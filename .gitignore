@@ -29,6 +29,7 @@
 
 debug/
 release/
+tests/
 *.opensdf
 *.sdf
 *.suo

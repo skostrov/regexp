@@ -81,13 +81,17 @@
     <ClInclude Include="Common.h" />
     <ClInclude Include="Edge.h" />
     <ClInclude Include="IFiniteAuto.h" />
+    <ClInclude Include="Dot.h" />
+    <ClInclude Include="RegularExpression.h" />
     <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Edge.cpp" />
+    <ClCompile Include="Dot.cpp" />
     <ClCompile Include="IFiniteAuto.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Vertex.cpp" />
+    <ClCompile Include="RegularExpression.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
