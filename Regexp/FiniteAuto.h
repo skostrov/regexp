@@ -1,4 +1,6 @@
-//#include "Common.h"
+#pragma once
+
+#include "Common.h"
 #include "Dot.h"
 
 class Vertex;
@@ -25,6 +27,6 @@ public:
 private:
 
 	list<Vertex> vertexList;
-	//Dot drawer;
+	Dot drawer;
 };
 
