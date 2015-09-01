@@ -11,6 +11,11 @@ RegularExpressionParser::RegularExpressionParser()
 
 RegularExpressionParser::~RegularExpressionParser()
 {
+	while ( !stack.empty() )
+	{
+		delete stack.top();
+		stack.pop();
+	}
 }
 
 bool RegularExpressionParser::Parse( string expression )

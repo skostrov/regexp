@@ -27,8 +27,11 @@ class Parser {
 private:
 	enum {
 		_EOF=0,
-		_ident=1,
-		_number=2
+		_Union=1,
+		_Closure=2,
+		_Symbol=3,
+		_LeftRoundBracket=4,
+		_RightRoundBracket=5
 	};
 	int maxT;
 
@@ -57,6 +60,10 @@ public:
 	void SemErr(const wchar_t* msg);
 
 	void Regexp();
+	void UnionExpression();
+	void ConcatenationExpression();
+	void ClosureExpression();
+	void Expression();
 
 	void Parse();
 

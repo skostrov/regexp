@@ -63,7 +63,39 @@ bool Parser::WeakSeparator(int n, int syFol, int repFol) {
 }
 
 void Parser::Regexp() {
-		Expect(_ident);
+		UnionExpression();
+}
+
+void Parser::UnionExpression() {
+		ConcatenationExpression();
+		if (la->kind == _Union) {
+			Get();
+			UnionExpression();
+		}
+}
+
+void Parser::ConcatenationExpression() {
+		ClosureExpression();
+		if (la->kind == _Symbol || la->kind == _LeftRoundBracket) {
+			ConcatenationExpression();
+		}
+}
+
+void Parser::ClosureExpression() {
+		Expression();
+		if (la->kind == _Closure) {
+			Get();
+		}
+}
+
+void Parser::Expression() {
+		if (la->kind == _LeftRoundBracket) {
+			Get();
+			Expression();
+			Expect(_RightRoundBracket);
+		} else if (la->kind == _Symbol) {
+			Get();
+		} else SynErr(7);
 }
 
 
@@ -167,7 +199,7 @@ void Parser::Parse() {
 }
 
 Parser::Parser(Scanner *scanner) {
-	maxT = 3;
+	maxT = 6;
 
 	ParserInitCaller<Parser>::CallInit(this);
 	dummyToken = NULL;
@@ -182,8 +214,8 @@ bool Parser::StartOf(int s) {
 	const bool T = true;
 	const bool x = false;
 
-	static bool set[1][5] = {
-		{T,x,x,x, x}
+	static bool set[1][8] = {
+		{T,x,x,x, x,x,x,x}
 	};
 
 
@@ -205,9 +237,13 @@ void Errors::SynErr(int line, int col, int n) {
 	wchar_t* s;
 	switch (n) {
 			case 0: s = coco_string_create(L"EOF expected"); break;
-			case 1: s = coco_string_create(L"ident expected"); break;
-			case 2: s = coco_string_create(L"number expected"); break;
-			case 3: s = coco_string_create(L"??? expected"); break;
+			case 1: s = coco_string_create(L"Union expected"); break;
+			case 2: s = coco_string_create(L"Closure expected"); break;
+			case 3: s = coco_string_create(L"Symbol expected"); break;
+			case 4: s = coco_string_create(L"LeftRoundBracket expected"); break;
+			case 5: s = coco_string_create(L"RightRoundBracket expected"); break;
+			case 6: s = coco_string_create(L"??? expected"); break;
+			case 7: s = coco_string_create(L"invalid Expression"); break;
 
 		default:
 		{

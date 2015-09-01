@@ -422,12 +422,16 @@ Scanner::~Scanner() {
 void Scanner::Init() {
 	EOL    = '\n';
 	eofSym = 0;
-	maxT = 3;
-	noSym = 3;
+	maxT = 6;
+	noSym = 6;
 	int i;
-	for (i = 65; i <= 90; ++i) start.set(i, 1);
-	for (i = 97; i <= 122; ++i) start.set(i, 1);
-	for (i = 48; i <= 57; ++i) start.set(i, 2);
+	for (i = 124; i <= 124; ++i) start.set(i, 1);
+	for (i = 0; i <= 39; ++i) start.set(i, 3);
+	for (i = 43; i <= 123; ++i) start.set(i, 3);
+	for (i = 125; i <= 65535; ++i) start.set(i, 3);
+	for (i = 40; i <= 40; ++i) start.set(i, 4);
+	for (i = 41; i <= 41; ++i) start.set(i, 5);
+	start.set(42, 2);
 		start.set(Buffer::EoF, -1);
 
 
@@ -544,7 +548,7 @@ void Scanner::AppendVal(Token *t) {
 
 Token* Scanner::NextToken() {
 	while (ch == ' ' ||
-			(ch >= 9 && ch <= 10) || ch == 13
+			false
 	) NextCh();
 
 	int recKind = noSym;
@@ -565,15 +569,15 @@ Token* Scanner::NextToken() {
 			t->kind = recKind; break;
 		} // NextCh already done
 		case 1:
-			case_1:
-			recEnd = pos; recKind = 1;
-			if ((ch >= L'0' && ch <= L'9') || (ch >= L'A' && ch <= L'Z') || (ch >= L'a' && ch <= L'z')) {AddCh(); goto case_1;}
-			else {t->kind = 1; break;}
+			{t->kind = 1; break;}
 		case 2:
-			case_2:
-			recEnd = pos; recKind = 2;
-			if ((ch >= L'0' && ch <= L'9')) {AddCh(); goto case_2;}
-			else {t->kind = 2; break;}
+			{t->kind = 2; break;}
+		case 3:
+			{t->kind = 3; break;}
+		case 4:
+			{t->kind = 4; break;}
+		case 5:
+			{t->kind = 5; break;}
 
 	}
 	AppendVal(t);

@@ -9,7 +9,7 @@ void main()
 	wcin.imbue( locale( "rus_rus.866" ) );
 
 	RegularExpressionParser parser;
-	parser.Parse( "a*ab" );
+	WriteLine( ( parser.Parse( "a*(ab)" ) ) ? "OK" : "FAIL" );
 
 	//Dot d;
 	//
