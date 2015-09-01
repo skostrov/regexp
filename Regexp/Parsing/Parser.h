@@ -53,6 +53,78 @@ public:
 	Token *t;			// last recognized token
 	Token *la;			// lookahead token
 
+struct PToken
+	{
+		enum
+		{
+			Union,
+			Concatenation,
+			Closure,
+			Terminal
+		} Type;
+
+		union
+		{
+			struct { PToken *P; };
+			struct { PToken *P1, *P2; };
+			struct { std::string Symbol; };
+		};
+	};
+
+	std::stack<PToken*> S;
+
+	void PushUnion()
+	{
+		auto t = new PToken();
+		t->Type = PToken::Union;
+
+		t->P1 = S.top(); 
+		S.pop();
+
+		t->P2 = S.top(); 
+		S.pop();
+
+		S.push( t );
+	}
+
+	void PushConcatenation()
+	{
+		auto t = new PToken();
+		t->Type = PToken::Concatenation;
+
+		t->P1 = S.top(); 
+		S.pop();
+
+		t->P2 = S.top(); 
+		S.pop();
+
+		S.push( t );
+	}
+
+	void PushClosure()
+	{
+		auto t = new PToken();
+		t->Type = PToken::Closure;
+
+		t->P = S.top(); 
+		S.pop();
+
+		S.push( t );
+	}
+
+	void PushTerminal( wchar_t* w )
+	{
+		auto t = new PToken();
+		t->Type = PToken::Terminal;
+
+		std::wstring ws( w );
+		std::string str( ws.begin(), ws.end() );
+
+		t->Symbol = str;
+
+		S.push( t );
+	}
+
 
 
 	Parser(Scanner *scanner);

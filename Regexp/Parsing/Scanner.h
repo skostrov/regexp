@@ -6,7 +6,8 @@
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <string>
+#include <stack>
 #include <wchar.h>
 
 // io.h and fcntl are used to ensure binary read from streams on windows

@@ -71,6 +71,7 @@ void Parser::UnionExpression() {
 		if (la->kind == _Union) {
 			Get();
 			UnionExpression();
+			PushUnion(); 
 		}
 }
 
@@ -78,6 +79,7 @@ void Parser::ConcatenationExpression() {
 		ClosureExpression();
 		if (la->kind == _Symbol || la->kind == _LeftRoundBracket) {
 			ConcatenationExpression();
+			PushConcatenation(); 
 		}
 }
 
@@ -85,16 +87,18 @@ void Parser::ClosureExpression() {
 		Expression();
 		if (la->kind == _Closure) {
 			Get();
+			PushClosure(); 
 		}
 }
 
 void Parser::Expression() {
 		if (la->kind == _LeftRoundBracket) {
 			Get();
-			Expression();
+			UnionExpression();
 			Expect(_RightRoundBracket);
 		} else if (la->kind == _Symbol) {
 			Get();
+			PushTerminal( t->val ); 
 		} else SynErr(7);
 }
 

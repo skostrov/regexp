@@ -24,7 +24,7 @@ public:
 					~Dot();
 
 	void			AddVertex( const string& name, const string& label, const string& color = "" );
-	void			AddEdge( const string& firstVertexName, const string& secondVertexName, const string& label );
+	void			AddEdge( const string& firstVertexName, const string& secondVertexName, const string& label = "" );
 	void			Clear();
 
 	void			Plot();
