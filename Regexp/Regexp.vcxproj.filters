@@ -29,6 +29,15 @@
     <ClInclude Include="Parsing\Scanner.h">
       <Filter>Parsing</Filter>
     </ClInclude>
+    <ClInclude Include="Edge.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FiniteAuto.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="RegularExpressionParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -48,6 +57,15 @@
     </ClCompile>
     <ClCompile Include="Parsing\Scanner.cpp">
       <Filter>Parsing</Filter>
+    </ClCompile>
+    <ClCompile Include="Edge.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Vertex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FiniteAuto.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RegularExpressionParser.cpp">
       <Filter>Source Files</Filter>

@@ -79,17 +79,23 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Common.h" />
+    <ClInclude Include="Edge.h" />
     <ClInclude Include="Dot.h" />
     <ClInclude Include="Parsing\Parser.h" />
     <ClInclude Include="Parsing\Scanner.h" />
     <ClInclude Include="RegularExpression.h" />
     <ClInclude Include="RegularExpressionParser.h" />
+    <ClInclude Include="FiniteAuto.h" />
+    <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Edge.cpp" />
     <ClCompile Include="Dot.cpp" />
+    <ClCompile Include="FiniteAuto.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Parsing\Parser.cpp" />
     <ClCompile Include="Parsing\Scanner.cpp" />
+    <ClCompile Include="Vertex.cpp" />
     <ClCompile Include="RegularExpression.cpp" />
     <ClCompile Include="RegularExpressionParser.cpp" />
   </ItemGroup>
