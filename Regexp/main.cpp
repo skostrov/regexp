@@ -6,65 +6,6 @@
 #include "Vertex.h"
 #include "Edge.h"
 
-void VisitStack( Parser::PToken* vertex, int& vertexNum, Dot& dot )
-{
-	int vn;
-
-	switch ( vertex->Type )
-	{
-		case Parser::PToken::Union: 
-			
-			vn = vertexNum;
-			vertexNum++;
-
-			dot.AddEdge( "V" + to_string( vn ), "V" + to_string( vertexNum ) );
-			VisitStack( vertex->P1, vertexNum, dot );
-
-			dot.AddEdge( "V" + to_string( vn ), "V" + to_string( vertexNum ) );
-			VisitStack( vertex->P2, vertexNum, dot );
-
-			dot.AddVertex( "V" + to_string( vn ), "Union " + to_string( vn ) );
-
-			break;
-
-		case Parser::PToken::Concatenation: 
-			
-			vn = vertexNum;
-			vertexNum++;
-
-			dot.AddEdge( "V" + to_string( vn ), "V" + to_string( vertexNum ) );
-			VisitStack( vertex->P1, vertexNum, dot );
-
-			dot.AddEdge( "V" + to_string( vn ), "V" + to_string( vertexNum ) );
-			VisitStack( vertex->P2, vertexNum, dot );
-
-			dot.AddVertex( "V" + to_string( vn ), "Concatenation " + to_string( vn ) );
-
-			break;
-
-		case Parser::PToken::Closure: 
-			
-			vn = vertexNum;
-			vertexNum++;
-
-			dot.AddEdge( "V" + to_string( vn ), "V" + to_string( vertexNum ) );
-			VisitStack( vertex->P, vertexNum, dot );
-
-			dot.AddVertex( "V" + to_string( vn ), "Closure " + to_string( vn ) );
-
-			break;
-		
-		case Parser::PToken::Terminal:
-
-			vn = vertexNum;
-			vertexNum++;
-
-			dot.AddVertex( "V" + to_string( vn ), vertex->Symbol + to_string( vn )  );
-
-			break;
-	}
-}
-
 void main()
 {
 	wcout.imbue( locale( "rus_rus.866" ) );
@@ -76,14 +17,8 @@ void main()
 	{
 		WriteLine( "OK" );
 
-		int vn = 0;
-		Dot d;
-
-		VisitStack( s, vn, d );
-
-		d.Plot();
-		d.SaveDot( "./../tests/test.dot" );
-		d.SaveImage( "C:/Program Files (x86)/Graphviz/bin/dot.exe", "./../tests/test.dot", "./../tests/test.png" );
+		parser.PlotDotForParseTree( s, "C:/Program Files (x86)/Graphviz/bin/dot.exe", 
+			"./../tests/test.dot", "./../tests/test.png" );
 	}
 	else
 	{

@@ -3,7 +3,6 @@
 #include "Common.h"
 
 #include "Parsing\Parser.h"
-#include "Parsing\Scanner.h"
 
 using namespace RegexpParsing;
 
@@ -11,9 +10,15 @@ class RegularExpressionParser
 {
 public:
 
-	RegularExpressionParser();
-	~RegularExpressionParser();
+	typedef Parser::PToken* ParseTree;
 
-	Parser::PToken* Parse( string expression );
+						RegularExpressionParser();
+						~RegularExpressionParser();
+
+	ParseTree			Parse( string expression );
+
+	void				DepthFirstSearchOnParseTree( ParseTree root, function<void(ParseTree)> visitor );
+
+	void				PlotDotForParseTree( ParseTree root, const string& dotExe, const string& dotFile, const string& pngFile );
 };
 

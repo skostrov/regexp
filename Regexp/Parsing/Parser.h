@@ -53,7 +53,7 @@ public:
 	Token *t;			// last recognized token
 	Token *la;			// lookahead token
 
-struct PToken
+	struct PToken
 	{
 		enum
 		{
@@ -69,6 +69,14 @@ struct PToken
 			struct { PToken *P1, *P2; };
 			struct { std::string Symbol; };
 		};
+
+		PToken() { memset( this, 0, sizeof( PToken ) ); }
+
+		~PToken()
+		{
+			delete P1;
+			delete P2;
+		}
 	};
 
 	std::stack<PToken*> S;
