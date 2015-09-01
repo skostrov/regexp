@@ -1,8 +1,10 @@
 #include "Edge.h"
+#include "Vertex.h"
 
 
 Edge::Edge(Vertex* _sender, Vertex* _receiver, string _tag) : sender(_sender), receiver(_receiver), tag(_tag)
 {
+	sender->AddEdge(this);
 }
 
 Edge::Edge(const Edge& _copy) : sender(_copy.sender), receiver(_copy.receiver), tag(_copy.tag)

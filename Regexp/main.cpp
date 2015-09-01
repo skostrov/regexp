@@ -1,13 +1,17 @@
 #include "Common.h"
 
-#include "Dot.h"
+//#include "Dot.h"
+
+#include "FiniteAuto.h"
+#include "Vertex.h"
+#include "Edge.h"
 
 void main()
 {
 	wcout.imbue( locale( "rus_rus.866" ) );
 	wcin.imbue( locale( "rus_rus.866" ) );
 
-	Dot d;
+	/*Dot d;
 
 	d.AddVertex( "V0", "Xor", "gray67" );
 	d.AddVertex( "V1", "And" );
@@ -22,7 +26,7 @@ void main()
 
 	d.Plot();
 	d.SaveDot( "./../tests/test.dot" );
-	d.SaveImage( "C:/Program Files (x86)/Graphviz/bin/dot.exe", "./../tests/test.dot", "./../tests/test.png" );
+	d.SaveImage( "C:/Program Files (x86)/Graphviz/bin/dot.exe", "./../tests/test.dot", "./../tests/test.png" );*/
 
 	//WriteLine( "Tests" );
 	//
@@ -30,4 +34,22 @@ void main()
 	//WriteLine( inputLine );
 	//
 	//ReadLine();
+
+	Vertex start("Start", Status::Start), finish("Finish", Status::Final), q("q");
+
+	Edge es1(&start, &finish, "b"), es2(&start, &q, "a");
+	Edge ef(&finish, &finish, "a");
+	Edge eq1(&q, &q, "b"), eq2(&q, &finish, "b");
+	Edge es3(&start, &q, "b");
+
+	FiniteAuto A;
+
+	A.AddVertex(start);
+	A.AddVertex(finish);
+	A.AddVertex(q);
+
+	A.SaveImage("C:/Program Files (x86)/Graphviz/bin/dot.exe", "./../tests/FiniteAuto.dot", "./../tests/FiniteAuto.png");
+
+	_getch();
+
 }

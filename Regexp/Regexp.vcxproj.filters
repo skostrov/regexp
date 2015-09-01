@@ -14,15 +14,19 @@
     <ClInclude Include="Common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Vertex.h">
     <ClInclude Include="RegularExpression.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Edge.h">
     <ClInclude Include="Dot.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IFiniteAuto.h">
+    <ClInclude Include="Edge.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FiniteAuto.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -30,15 +34,19 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Vertex.cpp">
     <ClCompile Include="RegularExpression.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Edge.cpp">
     <ClCompile Include="Dot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="IFiniteAuto.cpp">
+    <ClCompile Include="Edge.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Vertex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FiniteAuto.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
