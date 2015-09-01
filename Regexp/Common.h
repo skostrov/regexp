@@ -1,14 +1,18 @@
 #pragma once
 
+#ifndef _CRT_SECURE_NO_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS
+#endif
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
+#include <fstream>
 #include <conio.h>
 #include <windows.h>
 #include <vector>
 #include <list>
+#include <stack>
 #include <map>
 #include <unordered_map>
 #include <algorithm>

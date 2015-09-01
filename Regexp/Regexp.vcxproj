@@ -51,7 +51,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
@@ -79,9 +79,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Common.h" />
+    <ClInclude Include="Dot.h" />
+    <ClInclude Include="Parsing\Parser.h" />
+    <ClInclude Include="Parsing\Scanner.h" />
+    <ClInclude Include="RegularExpression.h" />
+    <ClInclude Include="RegularExpressionParser.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Dot.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Parsing\Parser.cpp" />
+    <ClCompile Include="Parsing\Scanner.cpp" />
+    <ClCompile Include="RegularExpression.cpp" />
+    <ClCompile Include="RegularExpressionParser.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

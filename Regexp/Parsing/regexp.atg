@@ -1,0 +1,32 @@
+$namespace=RegexpParsing
+
+COMPILER Regexp
+
+// TODO code here
+
+CHARACTERS
+
+	UnionC  = '|'.
+	ClosureC  = '*'.
+	LeftRoundBracketC = '(' .
+	RightRoundBracketC = ')' .
+	SymbolC = ANY - UnionC - ClosureC - LeftRoundBracketC - RightRoundBracketC .
+
+
+TOKENS
+
+	Union  = UnionC.
+	Closure  = '*'.
+	Symbol = SymbolC.
+	LeftRoundBracket = LeftRoundBracketC .
+	RightRoundBracket = RightRoundBracketC .
+
+PRODUCTIONS
+
+	Regexp = UnionExpression .
+	UnionExpression = ConcatenationExpression [ Union UnionExpression ] .
+	ConcatenationExpression = ClosureExpression [ ConcatenationExpression ] .
+	ClosureExpression = Expression [ Closure ] .
+	Expression = LeftRoundBracket Expression RightRoundBracket | Symbol .
+
+END Regexp.

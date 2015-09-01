@@ -23,13 +23,14 @@
 *.lib
 
 # Executables
-*.exe
 *.out
 *.app
 
 debug/
 release/
+tests/
 *.opensdf
 *.sdf
 *.suo
 *.user
+*.old
