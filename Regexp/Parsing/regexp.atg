@@ -1,0 +1,24 @@
+$namespace=RegexpParsing
+
+COMPILER Regexp
+
+CHARACTERS
+
+  letter = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".
+  digit = "0123456789".
+  cr  = '\r'.
+  lf  = '\n'.
+  tab = '\t'.
+
+TOKENS
+
+  ident  = letter {letter | digit}.
+  number = digit {digit}.
+
+IGNORE cr + lf + tab
+
+PRODUCTIONS
+
+	Regexp = ident.
+
+END Regexp.

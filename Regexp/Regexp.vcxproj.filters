@@ -9,6 +9,9 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
+    <Filter Include="Parsing">
+      <UniqueIdentifier>{1f268909-d3de-45ce-bf03-9c75bb3efdf4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h">
@@ -20,6 +23,15 @@
     <ClInclude Include="Dot.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Parsing\Parser.h">
+      <Filter>Parsing</Filter>
+    </ClInclude>
+    <ClInclude Include="Parsing\Scanner.h">
+      <Filter>Parsing</Filter>
+    </ClInclude>
+    <ClInclude Include="RegularExpressionParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -29,6 +41,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Dot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Parsing\Parser.cpp">
+      <Filter>Parsing</Filter>
+    </ClCompile>
+    <ClCompile Include="Parsing\Scanner.cpp">
+      <Filter>Parsing</Filter>
+    </ClCompile>
+    <ClCompile Include="RegularExpressionParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

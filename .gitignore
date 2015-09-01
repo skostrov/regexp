@@ -23,7 +23,6 @@
 *.lib
 
 # Executables
-*.exe
 *.out
 *.app
 
@@ -34,3 +33,4 @@ tests/
 *.sdf
 *.suo
 *.user
+*.old
