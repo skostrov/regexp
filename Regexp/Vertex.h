@@ -22,10 +22,14 @@ public:
 	const string& GetName() const;
 	void SetName(const string& _name);
 
-	void AddEdge(Edge* _edge);
-	void RemoveEdge(Edge* _edge);
+	void AddOutEdge(Edge* _edge);
+	void RemoveOutEdge(Edge* _edge);
 
-	const list<Edge*>& GetEdges() const;
+	void AddInEdge(Edge* _edge);
+	void RemoveInEdge(Edge* _edge);
+
+	const list<Edge*>& GetOutEdges() const;
+	const list<Edge*>& GetInEdges() const;
 
 	const Status& GetStatus() const;
 	void SetStatus(const Status& _status);
@@ -35,6 +39,7 @@ public:
 private:
 
 	string name;
+	list<Edge*> inEdges;
 	list<Edge*> outEdges;
 	Status status;
 };

@@ -97,17 +97,41 @@ void main()
 	//Edge eq1(&q, &q, "b"), eq2(&q, &finish, "b");
 	//Edge es3(&start, &q, "b");
 	
+<<<<<<< Updated upstream
+	//FiniteAuto A;
+	//
+	//A.AddVertex("Start", Status::Start);
+	//A.AddVertex("Finish", Status::Final);
+	//A.AddVertex("q");
+	//
+	//A.AddEdge("Start", "Finish", "b");
+	//A.AddEdge("Start", "q", "a");
+	//A.AddEdge("Finish", "Finish", "a");
+	//A.AddEdge("q", "q", "b");
+	//A.AddEdge("q", "Finish", "b");
+	//
+	//A.SaveImage("C:/Program Files (x86)/Graphviz/bin/dot.exe", "./../tests/FiniteAuto.dot", "./../tests/FiniteAuto.png");
+	//
+	//_getch();
+=======
 	FiniteAuto A;
 	
 	A.AddVertex("Start", Status::Start);
 	A.AddVertex("Finish", Status::Final);
 	A.AddVertex("q");
-	
+
 	A.AddEdge("Start", "Finish", "b");
 	A.AddEdge("Start", "q", "a");
 	A.AddEdge("Finish", "Finish", "a");
+	A.AddEdge("Finish", "Finish", "b");
+	A.AddEdge("q", "q", "b");
 	A.AddEdge("q", "Finish", "b");
-	A.RemoveVertex("Start");
 
-	A.SaveImage("C:/Program Files (x86)/Graphviz/bin/dot.exe", "./../tests/FiniteAuto.dot", "./../tests/FiniteAuto.png");	
+	A.RemoveVertex("Finish");
+	//A.RemoveEdge("Finish", "Finish", "a");
+
+	A.SaveImage("C:/Program Files (x86)/Graphviz/bin/dot.exe", "./../tests/FiniteAuto.dot", "./../tests/FiniteAuto.png");
+
+	_getch();
+>>>>>>> Stashed changes
 }

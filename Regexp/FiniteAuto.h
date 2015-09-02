@@ -17,7 +17,10 @@ public:
 	Vertex* GetStart() const;
 
 	void AddVertex(const string& _name, const Status& _status = Status::Normal);
-	void AddEdge(const string& _sender, const string& _receiver, const string& label);
+	void RemoveVertex(const string& _name);
+
+	void AddEdge(const string& _sender, const string& _receiver, const string& _label);
+	void RemoveEdge(const string& _sender, const string& _receiver, const string& _label);
 
 	const list<Vertex*>& GetVertexList() const;
 

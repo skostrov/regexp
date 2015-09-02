@@ -6,7 +6,7 @@ Vertex::Vertex(const string& _name, const Status& _status) : name(_name), status
 {
 }
 
-Vertex::Vertex(const Vertex& _copy) : name(_copy.name), outEdges(_copy.outEdges), status(_copy.status)
+Vertex::Vertex(const Vertex& _copy) : name(_copy.name), inEdges(_copy.inEdges), outEdges(_copy.outEdges), status(_copy.status)
 {
 }
 
@@ -28,7 +28,7 @@ void Vertex::SetName(const string& _name)
 	name = _name;
 }
 
-void Vertex::AddEdge(Edge* _edge)
+void Vertex::AddOutEdge(Edge* _edge)
 {
 	if (find(outEdges.cbegin(), outEdges.cend(), _edge) == outEdges.cend())
 	{
@@ -36,14 +36,32 @@ void Vertex::AddEdge(Edge* _edge)
 	}
 }
 
-void Vertex::RemoveEdge(Edge* _edge)
+void Vertex::RemoveOutEdge(Edge* _edge)
 {
 	outEdges.remove(_edge);
 }
 
-const list<Edge*>& Vertex::GetEdges() const
+void Vertex::AddInEdge(Edge* _edge)
+{
+	if (find(inEdges.cbegin(), inEdges.cend(), _edge) == inEdges.cend())
+	{
+		inEdges.push_back(_edge);
+	}
+}
+
+void Vertex::RemoveInEdge(Edge* _edge)
+{
+	inEdges.remove(_edge);
+}
+
+const list<Edge*>& Vertex::GetOutEdges() const
 {
 	return outEdges;
+}
+
+const list<Edge*>& Vertex::GetInEdges() const
+{
+	return inEdges;
 }
 
 const Status& Vertex::GetStatus() const
@@ -58,6 +76,6 @@ void Vertex::SetStatus(const Status& _status)
 
 bool Vertex::operator ==(const Vertex& _vertex) const
 {
-	return ((status == _vertex.status) && (outEdges == _vertex.outEdges));
+	return ((status == _vertex.status) && (outEdges == _vertex.outEdges) && (inEdges == _vertex.inEdges));
 }
 
