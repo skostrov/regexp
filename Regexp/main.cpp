@@ -30,6 +30,9 @@ void main()
 			"./../tests/testfa.png" );
 
 		auto fa = converter.GetFA();
+		fa->SaveImage( "C:/Program Files (x86)/Graphviz/bin/dot.exe",
+			"./../tests/FiniteAuto.dot",
+			"./../tests/FiniteAuto.png" );	
 	}
 	else
 	{
@@ -97,17 +100,17 @@ void main()
 	//Edge eq1(&q, &q, "b"), eq2(&q, &finish, "b");
 	//Edge es3(&start, &q, "b");
 	
-	FiniteAuto A;
-	
-	A.AddVertex("Start", Status::Start);
-	A.AddVertex("Finish", Status::Final);
-	A.AddVertex("q");
-	
-	A.AddEdge("Start", "Finish", "b");
-	A.AddEdge("Start", "q", "a");
-	A.AddEdge("Finish", "Finish", "a");
-	A.AddEdge("q", "Finish", "b");
-	A.RemoveVertex("Start");
-
-	A.SaveImage("C:/Program Files (x86)/Graphviz/bin/dot.exe", "./../tests/FiniteAuto.dot", "./../tests/FiniteAuto.png");	
+	//FiniteAuto A;
+	//
+	//A.AddVertex("Start", Status::Start);
+	//A.AddVertex("Finish", Status::Final);
+	//A.AddVertex("q");
+	//
+	//A.AddEdge("Start", "Finish", "b");
+	//A.AddEdge("Start", "q", "a");
+	//A.AddEdge("Finish", "Finish", "a");
+	//A.AddEdge("q", "Finish", "b");
+	//A.RemoveVertex("Start");
+	//
+	//A.SaveImage("C:/Program Files (x86)/Graphviz/bin/dot.exe", "./../tests/FiniteAuto.dot", "./../tests/FiniteAuto.png");	
 }
