@@ -85,13 +85,13 @@ RegularExpressionParser::ParseTree RegularExpressionParser::Parse( string expres
 	delete scanner;
 	delete parser;
 
-	return ( success ) ? result.top() : nullptr;
+	return ParseTree( ( success ) ? result.top() : nullptr );
 }
 
-void RegularExpressionParser::DepthFirstSearchOnParseTree( RegularExpressionParser::ParseTree root,
-	function<void(RegularExpressionParser::ParseTree)> visitor )
+void RegularExpressionParser::DepthFirstSearchOnParseTree( RegularExpressionParser::TreeVertex root,
+	function<void(RegularExpressionParser::TreeVertex)> visitor )
 {
-	auto q = stack<RegularExpressionParser::ParseTree>();
+	auto q = stack<RegularExpressionParser::TreeVertex>();
 	q.push( root );
 	
 	while ( !q.empty() )
@@ -123,7 +123,7 @@ void RegularExpressionParser::DepthFirstSearchOnParseTree( RegularExpressionPars
 	}
 }
 
-void RegularExpressionParser::PlotDotForParseTree( ParseTree root, const string& dotExe, const string& dotFile, const string& pngFile )
+void RegularExpressionParser::PlotDotForParseTree( TreeVertex root, const string& dotExe, const string& dotFile, const string& pngFile )
 {
 	int vertexNum = 0;
 	Dot dot;

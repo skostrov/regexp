@@ -14,6 +14,7 @@
 #include <list>
 #include <stack>
 #include <map>
+#include <memory>
 #include <unordered_map>
 #include <algorithm>
 #include <functional>

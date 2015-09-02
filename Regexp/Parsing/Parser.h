@@ -53,7 +53,7 @@ public:
 	Token *t;			// last recognized token
 	Token *la;			// lookahead token
 
-	struct PToken
+struct PToken
 	{
 		enum
 		{
@@ -63,19 +63,31 @@ public:
 			Terminal
 		} Type;
 
-		union
-		{
-			struct { PToken *P; };
-			struct { PToken *P1, *P2; };
-			struct { std::string Symbol; };
-		};
+		struct { PToken *P; };
+		struct { PToken *P1, *P2; };
+		struct { std::string Symbol; };
 
-		PToken() { memset( this, 0, sizeof( PToken ) ); }
+		PToken() :
+			P( 0 ),
+			P1( 0 ),
+			P2( 0 ),
+			Symbol()
+		{
+		}
 
 		~PToken()
 		{
-			delete P1;
-			delete P2;
+			if ( Type == Closure )
+			{
+				delete P;
+			}
+
+			if ( Type == Union 
+				|| Type == Concatenation )
+			{
+				delete P1;
+				delete P2;
+			}
 		}
 	};
 

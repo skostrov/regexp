@@ -17,7 +17,7 @@ void main()
 	{
 		WriteLine( "OK" );
 
-		parser.PlotDotForParseTree( s, "C:/Program Files (x86)/Graphviz/bin/dot.exe", 
+		parser.PlotDotForParseTree( s.get(), "C:/Program Files (x86)/Graphviz/bin/dot.exe", 
 			"./../tests/test.dot", "./../tests/test.png" );
 	}
 	else

@@ -10,6 +10,10 @@
 #include <stack>
 #include <wchar.h>
 
+#ifdef WIN32 
+#pragma warning( disable : 4102 )
+#endif
+
 // io.h and fcntl are used to ensure binary read from streams on windows
 #if _MSC_VER >= 1300
 #include <io.h>

@@ -12,12 +12,32 @@ COMPILER Regexp
 			Terminal
 		} Type;
 
-		union
+		struct { PToken *P; };
+		struct { PToken *P1, *P2; };
+		struct { std::string Symbol; };
+
+		PToken() :
+			P( 0 ),
+			P1( 0 ),
+			P2( 0 ),
+			Symbol()
 		{
-			struct { PToken *P; };
-			struct { PToken *P1, *P2; };
-			struct { std::string Symbol; };
-		};
+		}
+
+		~PToken()
+		{
+			if ( Type == Closure )
+			{
+				delete P;
+			}
+
+			if ( Type == Union 
+				|| Type == Concatenation )
+			{
+				delete P1;
+				delete P2;
+			}
+		}
 	};
 
 	std::stack<PToken*> S;

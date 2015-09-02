@@ -10,15 +10,16 @@ class RegularExpressionParser
 {
 public:
 
-	typedef Parser::PToken* ParseTree;
+	typedef Parser::PToken* TreeVertex;
+	typedef shared_ptr<Parser::PToken> ParseTree;
 
 						RegularExpressionParser();
 						~RegularExpressionParser();
 
 	ParseTree			Parse( string expression );
 
-	void				DepthFirstSearchOnParseTree( ParseTree root, function<void(ParseTree)> visitor );
+	void				DepthFirstSearchOnParseTree( TreeVertex root, function<void(TreeVertex)> visitor );
 
-	void				PlotDotForParseTree( ParseTree root, const string& dotExe, const string& dotFile, const string& pngFile );
+	void				PlotDotForParseTree( TreeVertex root, const string& dotExe, const string& dotFile, const string& pngFile );
 };
 
