@@ -9,6 +9,7 @@ class MultiStateSearcher
 public:
 
 	MultiStateSearcher(FiniteAuto* _auto, string _string);
+	MultiStateSearcher(const MultiStateSearcher& _searcher);
 	~MultiStateSearcher();
 
 	const FiniteAuto* GetAuto() const;

@@ -2,12 +2,12 @@
 #include "Vertex.h"
 
 
-Edge::Edge(Vertex* _sender, Vertex* _receiver, const string& _tag) : sender(_sender), receiver(_receiver), tag(_tag)
+Edge::Edge(Vertex* _sender, Vertex* _receiver, const string& _label) : sender(_sender), receiver(_receiver), label(_label)
 {
 	sender->AddEdge(this);
 }
 
-Edge::Edge(const Edge& _copy) : sender(_copy.sender), receiver(_copy.receiver), tag(_copy.tag)
+Edge::Edge(const Edge& _copy) : sender(_copy.sender), receiver(_copy.receiver), label(_copy.label)
 {
 }
 
@@ -35,13 +35,13 @@ void Edge::SetReceiver(Vertex* _receiver)
 	receiver = _receiver;
 }
 
-const string& Edge::GetTag() const
+const string& Edge::GetLabel() const
 {
-	return tag;
+	return label;
 }
 
-void Edge::SetTag(const string& _tag)
+void Edge::SetLabel(const string& _label)
 {
-	tag = _tag;
+	label = _label;
 }
 
