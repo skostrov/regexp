@@ -15,7 +15,7 @@ Edge::~Edge()
 {
 }
 
-const Vertex* Edge::GetSender() const
+Vertex* Edge::GetSender() const
 {
 	return sender;
 }
@@ -25,7 +25,7 @@ void Edge::SetSender(Vertex* _sender)
 	sender = _sender;
 }
 
-const Vertex* Edge::GetReceiver() const
+Vertex* Edge::GetReceiver() const
 {
 	return receiver;
 }

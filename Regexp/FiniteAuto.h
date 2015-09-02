@@ -24,6 +24,8 @@ public:
 
 	const list<Vertex*>& GetVertexList() const;
 
+	const list<Vertex*>& GetFinalList() const;
+
 	void SetDrawer(const Dot& _drawer);
 	const Dot& GetDrawer() const;
 
@@ -31,8 +33,9 @@ public:
 
 private:
 
-	Vertex* start;
 	list<Vertex*> vertexList;
+	Vertex* start;
+	list<Vertex*> finalList;
 	Dot drawer;
 
 	FiniteAuto(const FiniteAuto& _auto);

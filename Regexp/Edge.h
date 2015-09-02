@@ -11,10 +11,10 @@ public:
 	Edge(const Edge& _copy);
 	~Edge();
 	
-	const Vertex* GetSender() const;
+	Vertex* GetSender() const;
 	void SetSender(Vertex* _sender);
 
-	const Vertex* GetReceiver() const;
+	Vertex* GetReceiver() const;
 	void SetReceiver(Vertex* _receiver);
 
 	const string& GetLabel() const;

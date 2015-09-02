@@ -76,6 +76,10 @@ void FiniteAuto::AddVertex(const string& _name, const Status& _status)
 		{
 			start = newVertex;
 		}
+		if (_status == Status::Final)
+		{
+			finalList.push_back(newVertex);
+		}
 	}
 }
 
@@ -131,6 +135,11 @@ void FiniteAuto::RemoveEdge(const string& _sender, const string& _receiver, cons
 const list<Vertex*>& FiniteAuto::GetVertexList() const
 {
 	return vertexList;
+}
+
+const list<Vertex*>& FiniteAuto::GetFinalList() const
+{
+	return finalList;
 }
 
 void FiniteAuto::SetDrawer(const Dot& _drawer)
