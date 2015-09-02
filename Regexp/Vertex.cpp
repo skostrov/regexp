@@ -1,5 +1,6 @@
 #include "Vertex.h"
 
+#include "Edge.h"
 
 Vertex::Vertex(const string& _name, const Status& _status) : name(_name), status(_status)
 {

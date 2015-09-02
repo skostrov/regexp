@@ -17,8 +17,19 @@ void main()
 	{
 		WriteLine( "OK" );
 
-		parser.PlotDotForParseTree( s.get(), "C:/Program Files (x86)/Graphviz/bin/dot.exe", 
-			"./../tests/test.dot", "./../tests/test.png" );
+		parser.PlotDotForParseTree( s.get(), 
+			"C:/Program Files (x86)/Graphviz/bin/dot.exe", 
+			"./../tests/test.dot",
+			"./../tests/test.png" );
+
+		auto converter = ParseTreeToFAConverter( s );
+		converter.PlotFA();
+
+		converter.PlotDotForGeneratedFA( "C:/Program Files (x86)/Graphviz/bin/dot.exe", 
+			"./../tests/testfa.dot",
+			"./../tests/testfa.png" );
+
+		auto fa = converter.GetFA();
 	}
 	else
 	{
@@ -86,19 +97,19 @@ void main()
 	//Edge eq1(&q, &q, "b"), eq2(&q, &finish, "b");
 	//Edge es3(&start, &q, "b");
 	
-	FiniteAuto A;
-	
-	A.AddVertex("Start", Status::Start);
-	A.AddVertex("Finish", Status::Final);
-	A.AddVertex("q");
-
-	A.AddEdge("Start", "Finish", "b");
-	A.AddEdge("Start", "q", "a");
-	A.AddEdge("Finish", "Finish", "a");
-	A.AddEdge("q", "q", "b");
-	A.AddEdge("q", "Finish", "b");
-
-	A.SaveImage("C:/Program Files (x86)/Graphviz/bin/dot.exe", "./../tests/FiniteAuto.dot", "./../tests/FiniteAuto.png");
-
-	_getch();
+	//FiniteAuto A;
+	//
+	//A.AddVertex("Start", Status::Start);
+	//A.AddVertex("Finish", Status::Final);
+	//A.AddVertex("q");
+	//
+	//A.AddEdge("Start", "Finish", "b");
+	//A.AddEdge("Start", "q", "a");
+	//A.AddEdge("Finish", "Finish", "a");
+	//A.AddEdge("q", "q", "b");
+	//A.AddEdge("q", "Finish", "b");
+	//
+	//A.SaveImage("C:/Program Files (x86)/Graphviz/bin/dot.exe", "./../tests/FiniteAuto.dot", "./../tests/FiniteAuto.png");
+	//
+	//_getch();
 }
