@@ -1,26 +1,15 @@
 #include "Vertex.h"
 
-
-Vertex::Vertex(const string& _name, const Status& _status) : name(_name), status(_status)
+Vertex::Vertex(const EStatus& _status) : status(_status)
 {
 }
 
-Vertex::Vertex(const Vertex& _copy) : name(_copy.name), outEdges(_copy.outEdges), status(_copy.status)
+Vertex::Vertex(const Vertex& _copy) : outEdges(_copy.outEdges), status(_copy.status)
 {
 }
 
 Vertex::~Vertex()
 {
-}
-
-const string& Vertex::GetName() const
-{
-	return name;
-}
-
-void Vertex::SetName(const string& _name)
-{
-	name = _name;
 }
 
 void Vertex::AddEdge(Edge* _edge)
@@ -36,17 +25,7 @@ void Vertex::RemoveEdge(Edge* _edge)
 	outEdges.remove(_edge);
 }
 
-const list<Edge*>& Vertex::GetEdges() const
-{
-	return outEdges;
-}
-
-const Status& Vertex::GetStatus() const
-{
-	return status;
-}
-
-void Vertex::SetStatus(const Status& _status)
+void Vertex::SetStatus(const EStatus& _status)
 {
 	status = _status;
 }

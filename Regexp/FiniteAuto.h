@@ -1,32 +1,30 @@
 #pragma once
 
 #include "Common.h"
-#include "Dot.h"
 
-class Vertex;
-class Edge;
-
+#include "Vertex.h"
+#include "Edge.h"
 
 class FiniteAuto
 {
 public:
 
-	FiniteAuto();
-	FiniteAuto(const FiniteAuto& _auto);
-	~FiniteAuto();
+	typedef list<Vertex*> VertexList;
 
-	void AddVertex(const Vertex& _vertex);
+					FiniteAuto();
+					FiniteAuto( const FiniteAuto& _auto );
+	virtual			~FiniteAuto();
 
-	const list<Vertex>& GetVertexList() const;
+	Vertex*			AddVertex( const Vertex::EStatus& vertexStatus );
+	Edge*			AddEdge( Vertex* sender, Vertex* receiver, const Edge::Tag& tag );
 
-	void SetDrawer(const Dot& _drawer);
-	const Dot& GetDrawer() const;
-
-	void SaveImage(const string& dotExe, const string& dotFile, const string& pngFile);
-
+	const VertexList& GetVertexList() const { return vertexList; }
+	Vertex*			GetStartVertex() const { return startVertex; }
+	Vertex*			GetFinalVertex() const { return finalVertex; }
+	
 private:
 
-	list<Vertex> vertexList;
-	Dot drawer;
+	VertexList		vertexList;
+	Vertex*			startVertex;
+	Vertex*			finalVertex;
 };
-

@@ -1,71 +1,102 @@
 #include "FiniteAuto.h"
+
 #include "Vertex.h"
 #include "Edge.h"
 
-namespace
+//namespace
+//{
+//	string GetColor(const Vertex& _vertex)
+//	{
+//		switch (_vertex.GetStatus())
+//		{
+//		case Status::Final:
+//			return "gray67";
+//		case Status::Start:
+//			return "gray93";
+//		}
+//
+//		return "";
+//	}
+//}
+
+FiniteAuto::FiniteAuto():
+	startVertex( nullptr ),
+	finalVertex( nullptr )
 {
-	string GetColor(const Vertex& _vertex)
+}
+
+FiniteAuto::FiniteAuto(const FiniteAuto& _auto):
+	vertexList(_auto.vertexList),
+	startVertex( nullptr ),
+	finalVertex( nullptr )
+{
+	if ( _auto.GetStartVertex() )
 	{
-		switch (_vertex.GetStatus())
-		{
-		case Status::Final:
-			return "gray67";
-		case Status::Start:
-			return "gray93";
-		}
-
-		return "";
+		startVertex = new Vertex( _auto.GetStartVertex()->GetStatus() );
 	}
-}
 
-FiniteAuto::FiniteAuto()
-{
-}
-
-FiniteAuto::FiniteAuto(const FiniteAuto& _auto) : vertexList(_auto.vertexList)
-{
+	if ( _auto.GetFinalVertex() )
+	{
+		finalVertex = new Vertex( _auto.GetFinalVertex()->GetStatus() );
+	}
 }
 
 FiniteAuto::~FiniteAuto()
 {
-}
-
-void FiniteAuto::AddVertex(const Vertex& _vertex)
-{
-	if (find(vertexList.cbegin(), vertexList.cend(), _vertex) == vertexList.cend())
+	for ( auto& it : vertexList )
 	{
-		vertexList.push_back(_vertex);
+		for ( auto& jt : it->GetEdges() )
+		{
+			delete jt;
+		}
+
+		delete it;
 	}
 }
 
-const list<Vertex>& FiniteAuto::GetVertexList() const
+Edge* FiniteAuto::AddEdge( Vertex* sender, Vertex* receiver, const Edge::Tag& tag )
 {
-	return vertexList;
+	auto result = new Edge( sender, receiver, tag );
+	return result;
 }
 
-void FiniteAuto::SetDrawer(const Dot& _drawer)
+Vertex* FiniteAuto::AddVertex( const Vertex::EStatus& vertexStatus )
 {
-	drawer = _drawer;
-}
-
-const Dot& FiniteAuto::GetDrawer() const
-{
-	return drawer;
-}
-
-void FiniteAuto::SaveImage(const string& dotExe, const string& dotFile, const string& pngFile)
-{
-	for (auto i : vertexList)
+	for ( auto& it : vertexList )
 	{
-		drawer.AddVertex(i.GetName(), "", GetColor(i));
-		for (list<Edge*>::const_iterator j = i.GetEdges().cbegin(); j != i.GetEdges().cend(); j++)
+		if ( it->GetStatus() == vertexStatus )
 		{
-			drawer.AddEdge((*j)->GetSender()->GetName(), (*j)->GetReceiver()->GetName(), (*j)->GetTag());
+			it->SetStatus( Vertex::EStatus::Normal );
 		}
 	}
 
-	drawer.Plot();
-	drawer.SaveDot(dotFile);
-	drawer.SaveImage(dotExe, dotFile, pngFile);
+	auto result = new Vertex( vertexStatus );
+	vertexList.push_back( result );
+
+	if ( vertexStatus == Vertex::EStatus::Start )
+	{
+		startVertex = result;
+	}
+	else if ( vertexStatus == Vertex::EStatus::Final )
+	{
+		finalVertex = result;
+	}
+
+	return result;
 }
 
+//void FiniteAuto::SaveImage(const string& dotExe, const string& dotFile, const string& pngFile)
+//{
+//	for (auto i : vertexList)
+//	{
+//		drawer.AddVertex(i.GetName(), "", GetColor(i));
+//		for (list<Edge*>::const_iterator j = i.GetEdges().cbegin(); j != i.GetEdges().cend(); j++)
+//		{
+//			drawer.AddEdge((*j)->GetSender()->GetName(), (*j)->GetReceiver()->GetName(), (*j)->GetTag());
+//		}
+//	}
+//
+//	drawer.Plot();
+//	drawer.SaveDot(dotFile);
+//	drawer.SaveImage(dotExe, dotFile, pngFile);
+//}

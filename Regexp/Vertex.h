@@ -4,38 +4,36 @@
 
 class Edge;
 
-enum class Status
-{ 
-	Start,
-	Final,
-	Normal 
-};
-
 class Vertex
 {
 public:
 
-	Vertex(const string& _name, const Status& _status = Status::Normal);
-	Vertex(const Vertex& _copy);
-	~Vertex();
+	enum class EStatus
+	{ 
+		Start,
+		Final,
+		Normal 
+	};
 
-	const string& GetName() const;
-	void SetName(const string& _name);
+	typedef list<Edge*> EdgeList;
 
-	void AddEdge(Edge* _edge);
-	void RemoveEdge(Edge* _edge);
+					Vertex( const EStatus& status = EStatus::Normal );
+					Vertex( const Vertex& copy );
+					~Vertex();
+					
+	void			AddEdge( Edge* edge );
+	void			RemoveEdge( Edge* edge );
 
-	const list<Edge*>& GetEdges() const;
+	const EdgeList& GetEdges() const { return outEdges; }
 
-	const Status& GetStatus() const;
-	void SetStatus(const Status& _status);
+	const EStatus&	GetStatus() const { return status; }
+	void			SetStatus( const EStatus& status );
 
-	bool operator ==(const Vertex& _vertex) const;
+	bool			operator ==( const Vertex& vertex ) const;
 
 private:
 
-	string name;
-	list<Edge*> outEdges;
-	Status status;
+	EdgeList		outEdges;
+	EStatus			status;
 };
 

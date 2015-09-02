@@ -7,22 +7,28 @@ class Vertex;
 class Edge
 {
 public:
-	Edge(Vertex* _sender, Vertex* _receiver, string _tag);
-	Edge(const Edge& _copy);
-	~Edge();
+
+	class Tag
+	{
+		string Label;
+	};
+
+					Edge(Vertex* _sender, Vertex* _receiver, Tag _tag);
+					Edge(const Edge& _copy);
+					~Edge();
 	
-	const Vertex* GetSender() const;
-	void SetSender(Vertex* _sender);
+	const Vertex*	GetSender() const { return sender; }
+	void			SetSender(Vertex* sender);
 
-	const Vertex* GetReceiver() const;
-	void SetReceiver(Vertex* _receiver);
+	const Vertex*	GetReceiver() const { return receiver; }
+	void			SetReceiver(Vertex* receiver);
 
-	const string& GetTag() const;
-	void SetTag(const string& _tag);
+	const Tag&		GetTag() const;
+	void			SetTag(const Tag& tag);
 
 private:
-	Vertex* sender;
-	Vertex* receiver;
-	string tag;
-};
 
+	Vertex*			sender;
+	Vertex*			receiver;
+	Tag				tag;
+};

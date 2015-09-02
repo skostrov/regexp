@@ -1,8 +1,8 @@
 #include "Edge.h"
+
 #include "Vertex.h"
 
-
-Edge::Edge(Vertex* _sender, Vertex* _receiver, string _tag) : sender(_sender), receiver(_receiver), tag(_tag)
+Edge::Edge(Vertex* _sender, Vertex* _receiver, Tag _tag) : sender(_sender), receiver(_receiver), tag(_tag)
 {
 	sender->AddEdge(this);
 }
@@ -15,19 +15,9 @@ Edge::~Edge()
 {
 }
 
-const Vertex* Edge::GetSender() const
-{
-	return sender;
-}
-
 void Edge::SetSender(Vertex* _sender)
 {
 	sender = _sender;
-}
-
-const Vertex* Edge::GetReceiver() const
-{
-	return receiver;
 }
 
 void Edge::SetReceiver(Vertex* _receiver)
@@ -35,13 +25,7 @@ void Edge::SetReceiver(Vertex* _receiver)
 	receiver = _receiver;
 }
 
-const string& Edge::GetTag() const
-{
-	return tag;
-}
-
-void Edge::SetTag(const string& _tag)
+void Edge::SetTag(const Tag& _tag)
 {
 	tag = _tag;
 }
-
