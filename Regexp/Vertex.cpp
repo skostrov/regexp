@@ -11,6 +11,10 @@ Vertex::Vertex(const Vertex& _copy) : name(_copy.name), outEdges(_copy.outEdges)
 
 Vertex::~Vertex()
 {
+	for (auto i = outEdges.begin(); i != outEdges.end(); i++)
+	{
+		delete *i;
+	}
 }
 
 const string& Vertex::GetName() const

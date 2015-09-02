@@ -16,29 +16,61 @@ namespace
 
 		return "";
 	}
+
+	class SearchByName
+	{
+	public:
+
+		SearchByName(const string& _name) : name(_name) {}
+		bool operator ()(const Vertex* operand)
+		{
+			return operand->GetName() == name;
+		}
+
+	private:
+
+		string name;
+	};
 }
 
 FiniteAuto::FiniteAuto()
 {
 }
 
-FiniteAuto::FiniteAuto(const FiniteAuto& _auto) : vertexList(_auto.vertexList)
-{
-}
-
 FiniteAuto::~FiniteAuto()
 {
-}
-
-void FiniteAuto::AddVertex(const Vertex& _vertex)
-{
-	if (find(vertexList.cbegin(), vertexList.cend(), _vertex) == vertexList.cend())
+	for (auto i = vertexList.cbegin(); i != vertexList.cend(); i++)
 	{
-		vertexList.push_back(_vertex);
+		delete *i;
 	}
 }
 
-const list<Vertex>& FiniteAuto::GetVertexList() const
+Vertex* FiniteAuto::GetStart() const
+{
+	return start;
+}
+
+void FiniteAuto::AddVertex(const string& _name, const Status& _status)
+{
+	if (find_if(vertexList.cbegin(), vertexList.cend(), SearchByName(_name)) == vertexList.cend())
+	{
+		Vertex* newVertex = new Vertex(_name, _status);
+		vertexList.push_back(newVertex);
+		if (_status == Status::Start)
+		{
+			start = newVertex;
+		}
+	}
+}
+
+void FiniteAuto::AddEdge(const string& _sender, const string& _receiver, const string& label)
+{
+	Vertex* senderVertex = *find_if(vertexList.cbegin(), vertexList.cend(), SearchByName(_sender));
+	Edge* newEdge = new Edge(senderVertex, *find_if(vertexList.cbegin(), vertexList.cend(), SearchByName(_receiver)), label);
+	senderVertex->AddEdge(newEdge);
+}
+
+const list<Vertex*>& FiniteAuto::GetVertexList() const
 {
 	return vertexList;
 }
@@ -57,10 +89,10 @@ void FiniteAuto::SaveImage(const string& dotExe, const string& dotFile, const st
 {
 	for (auto i : vertexList)
 	{
-		drawer.AddVertex(i.GetName(), "", GetColor(i));
-		for (list<Edge*>::const_iterator j = i.GetEdges().cbegin(); j != i.GetEdges().cend(); j++)
+		drawer.AddVertex(i->GetName(), "", GetColor(*i));
+		for (list<Edge*>::const_iterator j = i->GetEdges().cbegin(); j != i->GetEdges().cend(); j++)
 		{
-			drawer.AddEdge((*j)->GetSender()->GetName(), (*j)->GetReceiver()->GetName(), (*j)->GetTag());
+			drawer.AddEdge((*j)->GetSender()->GetName(), (*j)->GetReceiver()->GetName(), (*j)->GetLabel());
 		}
 	}
 

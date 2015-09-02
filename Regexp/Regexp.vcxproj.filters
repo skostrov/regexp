@@ -41,6 +41,12 @@
     <ClInclude Include="RegularExpressionParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MultiStateSearcher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FiniteAutoState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -68,6 +74,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RegularExpressionParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiStateSearcher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FiniteAutoState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

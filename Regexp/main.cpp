@@ -78,4 +78,27 @@ void main()
 	//A.SaveImage("C:/Program Files (x86)/Graphviz/bin/dot.exe", "./../tests/FiniteAuto.dot", "./../tests/FiniteAuto.png");
 	//
 	//ReadLine();
+
+	//Vertex start("Start", Status::Start), finish("Finish", Status::Final), q("q");
+	
+	//Edge es1(&start, &finish, "b"), es2(&start, &q, "a");
+	//Edge ef(&finish, &finish, "a");
+	//Edge eq1(&q, &q, "b"), eq2(&q, &finish, "b");
+	//Edge es3(&start, &q, "b");
+	
+	FiniteAuto A;
+	
+	A.AddVertex("Start", Status::Start);
+	A.AddVertex("Finish", Status::Final);
+	A.AddVertex("q");
+
+	A.AddEdge("Start", "Finish", "b");
+	A.AddEdge("Start", "q", "a");
+	A.AddEdge("Finish", "Finish", "a");
+	A.AddEdge("q", "q", "b");
+	A.AddEdge("q", "Finish", "b");
+
+	A.SaveImage("C:/Program Files (x86)/Graphviz/bin/dot.exe", "./../tests/FiniteAuto.dot", "./../tests/FiniteAuto.png");
+
+	_getch();
 }

@@ -81,6 +81,8 @@
     <ClInclude Include="Common.h" />
     <ClInclude Include="Edge.h" />
     <ClInclude Include="Dot.h" />
+    <ClInclude Include="FiniteAutoState.h" />
+    <ClInclude Include="MultiStateSearcher.h" />
     <ClInclude Include="Parsing\Parser.h" />
     <ClInclude Include="Parsing\Scanner.h" />
     <ClInclude Include="RegularExpression.h" />
@@ -92,7 +94,9 @@
     <ClCompile Include="Edge.cpp" />
     <ClCompile Include="Dot.cpp" />
     <ClCompile Include="FiniteAuto.cpp" />
+    <ClCompile Include="FiniteAutoState.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MultiStateSearcher.cpp" />
     <ClCompile Include="Parsing\Parser.cpp" />
     <ClCompile Include="Parsing\Scanner.cpp" />
     <ClCompile Include="Vertex.cpp" />
