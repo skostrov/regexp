@@ -7,7 +7,7 @@ class Vertex;
 class Edge
 {
 public:
-	Edge(Vertex* _sender, Vertex* _receiver, string _tag);
+	Edge(Vertex* _sender, Vertex* _receiver, const string& _tag);
 	Edge(const Edge& _copy);
 	~Edge();
 	

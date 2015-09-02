@@ -30,11 +30,20 @@ FiniteAuto::~FiniteAuto()
 {
 }
 
-void FiniteAuto::AddVertex(const Vertex& _vertex)
+Vertex* FiniteAuto::GetStart() const
+{
+	return start;
+}
+
+void FiniteAuto::AddVertex(Vertex& _vertex)
 {
 	if (find(vertexList.cbegin(), vertexList.cend(), _vertex) == vertexList.cend())
 	{
 		vertexList.push_back(_vertex);
+		if (_vertex.GetStatus() == Status::Start)
+		{
+			start = &_vertex;
+		}
 	}
 }
 

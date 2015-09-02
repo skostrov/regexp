@@ -2,7 +2,7 @@
 #include "Vertex.h"
 
 
-Edge::Edge(Vertex* _sender, Vertex* _receiver, string _tag) : sender(_sender), receiver(_receiver), tag(_tag)
+Edge::Edge(Vertex* _sender, Vertex* _receiver, const string& _tag) : sender(_sender), receiver(_receiver), tag(_tag)
 {
 	sender->AddEdge(this);
 }

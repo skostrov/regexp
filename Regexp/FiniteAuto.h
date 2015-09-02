@@ -15,7 +15,10 @@ public:
 	FiniteAuto(const FiniteAuto& _auto);
 	~FiniteAuto();
 
-	void AddVertex(const Vertex& _vertex);
+	Vertex* GetStart() const;
+
+	void AddVertex(Vertex& _vertex);
+	void AddEdge();
 
 	const list<Vertex>& GetVertexList() const;
 
@@ -26,6 +29,7 @@ public:
 
 private:
 
+	Vertex* start;
 	list<Vertex> vertexList;
 	Dot drawer;
 };

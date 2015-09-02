@@ -78,4 +78,6 @@ void main()
 	//A.SaveImage("C:/Program Files (x86)/Graphviz/bin/dot.exe", "./../tests/FiniteAuto.dot", "./../tests/FiniteAuto.png");
 	//
 	//ReadLine();
+
+	_getch();
 }
