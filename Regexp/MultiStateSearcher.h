@@ -21,8 +21,8 @@ public:
 
 	void Initialize(const string& _testString);
 	bool TestMatching(const string& _testString);
-
 	bool CheckFinalState() const;
+	void PassUnlabeledEdges(list<FiniteAutoState>& _newStates, list<FiniteAutoState>& _oldStates);
 
 private:
 

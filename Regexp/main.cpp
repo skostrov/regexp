@@ -13,7 +13,8 @@ void main()
 	wcin.imbue( locale( "rus_rus.866" ) );
 
 	RegularExpressionParser parser;
-	auto s = parser.Parse( "(ab)*" );
+	auto s = parser.Parse( "((a|b)*ab(a|b)*)*|a" );
+	//auto s = parser.Parse( "(ab)*" );
 	if ( s )
 	{
 		WriteLine( "OK" );
@@ -37,7 +38,7 @@ void main()
 
 		MultiStateSearcher M(fa);
 
-		vector<string> tests = { "a", "b", "aaaaa", "bbbbbbbb", "ba" };
+		vector<string> tests = { "a" };
 
 		for (auto i : tests)
 		{
