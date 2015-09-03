@@ -98,10 +98,10 @@ struct PToken
 		auto t = new PToken();
 		t->Type = PToken::Union;
 
-		t->P1 = S.top(); 
+		t->P2 = S.top(); 
 		S.pop();
 
-		t->P2 = S.top(); 
+		t->P1 = S.top(); 
 		S.pop();
 
 		S.push( t );
@@ -112,10 +112,10 @@ struct PToken
 		auto t = new PToken();
 		t->Type = PToken::Concatenation;
 
-		t->P1 = S.top(); 
+		t->P2 = S.top(); 
 		S.pop();
 
-		t->P2 = S.top(); 
+		t->P1 = S.top(); 
 		S.pop();
 
 		S.push( t );

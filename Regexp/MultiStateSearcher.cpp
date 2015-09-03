@@ -70,12 +70,15 @@ bool MultiStateSearcher::TestMatching(const string& _testString)
 {
 	Initialize(_testString);
 
+	list<FiniteAutoState> newStates;
+	list<FiniteAutoState> oldStates;
+
+	PassUnlabeledEdges(newStates, oldStates);
+
 	for (int strIndex = 0; strIndex != _testString.length(); ++strIndex)
 	{
-		list<FiniteAutoState> newStates;
-		list<FiniteAutoState> oldStates;
-
-		PassUnlabeledEdges(newStates, oldStates);
+		newStates.clear();
+		oldStates.clear();
 
 		auto i = stateList.begin();
 		while (i != stateList.end())

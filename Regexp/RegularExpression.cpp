@@ -10,7 +10,7 @@ RegularExpression::~RegularExpression()
 {
 }
 
-void RegularExpression::IsMatch( string inputString )
+bool RegularExpression::IsMatch( string inputString )
 {
 	if ( !isCompiled )
 	{

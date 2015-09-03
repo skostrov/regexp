@@ -13,7 +13,7 @@ void main()
 	wcin.imbue( locale( "rus_rus.866" ) );
 
 	RegularExpressionParser parser;
-	auto s = parser.Parse( "((a|b)*ab(a|b)*)*|a" );
+	auto s = parser.Parse( "(a | b | c | 1 | 2 | 3) (a | b | c | 1 | 2 | 3)*" );
 	//auto s = parser.Parse( "(ab)*" );
 	if ( s )
 	{
@@ -38,7 +38,7 @@ void main()
 
 		MultiStateSearcher M(fa);
 
-		vector<string> tests = { "a" };
+		vector<string> tests = { "ab1231cccc32aaaaabbabbbbcccccccbbbbbaa123212122233333" };
 
 		for (auto i : tests)
 		{
@@ -46,11 +46,11 @@ void main()
 
 			if (test)
 			{
-				cout << setw(10) << left << i << "+" << endl;
+				cout << setw(50) << left << i << "+" << endl;
 			}
 			else
 			{
-				cout << setw(10) << left << i << "-" << endl;
+				cout << setw(50) << left << i << "-" << endl;
 			}
 		}
 
