@@ -12,8 +12,9 @@ void main()
 	wcout.imbue( locale( "rus_rus.866" ) );
 	wcin.imbue( locale( "rus_rus.866" ) );
 
-	/*RegularExpressionParser parser;
-	auto s = parser.Parse( "((a|b)*ab(a|b)*)*|a" );
+	RegularExpressionParser parser;
+	auto s = parser.Parse( "(a | b | c | 1 | 2 | 3) (a | b | c | 1 | 2 | 3)*" );
+	//auto s = parser.Parse( "(ab)*" );
 	if ( s )
 	{
 		WriteLine( "OK" );
@@ -37,7 +38,7 @@ void main()
 
 		MultiStateSearcher M(fa);
 
-		vector<string> tests = { "a", "ab", "aaaaabbbb", "bbab" };
+		vector<string> tests = { "ab1231cccc32aaaaabbabbbbcccccccbbbbbaa123212122233333" };
 
 		for (auto i : tests)
 		{
@@ -45,11 +46,11 @@ void main()
 
 			if (test)
 			{
-				cout << setw(10) << left << i << "+" << endl;
+				cout << setw(50) << left << i << "+" << endl;
 			}
 			else
 			{
-				cout << setw(10) << left << i << "-" << endl;
+				cout << setw(50) << left << i << "-" << endl;
 			}
 		}
 
@@ -58,25 +59,23 @@ void main()
 	else
 	{
 		WriteLine( "FAIL" );
-	}*/
+	}
 
-	FiniteAuto A;
+	/*FiniteAuto A;
 
 	A.AddVertex("start", Status::Start);
 	A.AddVertex("finish", Status::Final);
-	A.AddVertex("q");
+	A.AddVertex("q1");
 
-	A.AddEdge("start", "finish", "");
-	A.AddEdge("start", "q", "");
-	A.AddEdge("q", "q", "a");
-	A.AddEdge("q", "finish", "b");
-	A.AddEdge("finish", "finish", "a");
+	A.AddEdge("start", "q1", "a");
+	A.AddEdge("q1", "q1", "a");
+	A.AddEdge("q1", "finish", "");
 
 	A.SaveImage("C:/Program Files (x86)/Graphviz/bin/dot.exe", "./../tests/FiniteAuto.dot", "./../tests/FiniteAuto.png");
 
 	MultiStateSearcher M(&A);
 
-	vector<string> tests = { "b", "ba", "baaaa", "ab", "abaaaa", "abbbb", "abbbbaaa", "aaaa", "bab", "babbbb"};
+	vector<string> tests = { "abaaaa" };
 
 	for (auto i : tests)
 	{
@@ -84,14 +83,14 @@ void main()
 
 		if (test)
 		{
-			cout << setw(10) << left << i << "+" << endl;
+			cout << setw(20) << left << i << "+" << endl;
 		}
 		else
 		{
-			cout << setw(10) << left << i << "-" << endl;
+			cout << setw(20) << left << i << "-" << endl;
 		}
 	}
 
-	_getch();
+	_getch();*/
 
 }

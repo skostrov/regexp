@@ -311,7 +311,7 @@ void ParseTreeToFAConverter::AppednRuleToE( E* e )
 				auto es = new E( e->Vs, sn, nullptr );
 				auto ef = new E( fn, e->Vf, nullptr );
 
-				RemoveE( e );
+				//RemoveE( e );
 
 				AppednRuleToE( en );
 			}

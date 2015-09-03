@@ -9,7 +9,7 @@ public:
 						RegularExpression( string expression, bool lazyCompilation = false );
 						~RegularExpression();
 
-	void				IsMatch( string inputString );
+	bool				IsMatch( string inputString );
 
 private:
 

@@ -32,27 +32,27 @@ bool FiniteAutoState::operator ==(const FiniteAutoState& _state) const
 	return autoPos == _state.autoPos;
 }
 
-void FiniteAutoState::GoNextState(const char& _symbol, list<FiniteAutoState>& _stateList, MultiStateSearcher* _searcher)
+bool FiniteAutoState::GoEdgesLabeledAs(const string& _label, list<FiniteAutoState>& _stateList)
 {
-	if ((_searcher->GetTestString().size() == _searcher->GetTestStringPos()) && (autoPos->GetStatus() == Status::Final))
+	bool result = false;
+
+	if (autoPos->GetOutEdges().size())
 	{
-		_searcher->SetStringMatched(true);
-	}
-	else
-	{
+		result = true;
+
 		for (auto i = autoPos->GetOutEdges().begin(); i != autoPos->GetOutEdges().end(); ++i)
 		{
-			if ((*i)->GetLabel() == string(1, _symbol))
+			if ((*i)->GetLabel() == _label)
 			{
 				_stateList.push_back(FiniteAutoState((*i)->GetReceiver()));
 			}
-			else if ((*i)->GetLabel() == "")
+			else
 			{
-				_searcher->GetStateList().push_back(FiniteAutoState((*i)->GetReceiver()));
-				_searcher->GetStateList().insert(_searcher->GetStateList().end(), _stateList.begin(), _stateList.end());
-				_stateList.clear();
+				result = false;
 			}
 		}
 	}
+
+	return result;
 }
 

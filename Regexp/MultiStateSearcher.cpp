@@ -3,7 +3,7 @@
 #include "FiniteAutoState.h"
 
 
-MultiStateSearcher::MultiStateSearcher(FiniteAuto* _auto) : automaton(_auto), testStringPos(0)
+MultiStateSearcher::MultiStateSearcher(FiniteAuto* _auto) : automaton(_auto)
 {
 	stateList.push_back(FiniteAutoState(automaton->GetStart()));
 }
@@ -21,29 +21,9 @@ FiniteAuto* MultiStateSearcher::GetAuto() const
 	return automaton;
 }
 
-const string& MultiStateSearcher::GetTestString() const
-{
-	return testString;
-}
-
-const size_t& MultiStateSearcher::GetTestStringPos() const
-{
-	return testStringPos;
-}
-
 list<FiniteAutoState>& MultiStateSearcher::GetStateList()
 {
 	return stateList;
-}
-
-const bool& MultiStateSearcher::GetStringMatched() const
-{
-	return stringMatched;
-}
-
-void MultiStateSearcher::SetStringMatched(const bool& _value)
-{
-	stringMatched = _value;
 }
 
 void  MultiStateSearcher::AddState(const FiniteAutoState& _state)
@@ -58,36 +38,73 @@ void MultiStateSearcher::RemoveState(const FiniteAutoState& _state)
 
 void MultiStateSearcher::Initialize(const string& _testString)
 {
-	testString = _testString;
-	testStringPos = size_t(0);
-
 	stateList.clear();
 	stateList.push_back(FiniteAutoState(automaton->GetStart()));
+}
 
-	stringMatched = false;
+void MultiStateSearcher::PassUnlabeledEdges(list<FiniteAutoState>& _newStates, list<FiniteAutoState>& _oldStates)
+{
+	do
+	{
+		_oldStates = stateList;
+		_newStates.clear();
+		auto i = stateList.begin();
+		while (i != stateList.end())
+		{
+			if (i->GoEdgesLabeledAs("", _newStates))
+			{
+				auto j = i++;
+				stateList.erase(j);
+			}
+			else
+			{
+				++i;
+			}
+		}
+		stateList.insert(stateList.end(), _newStates.begin(), _newStates.end());
+
+	} while (stateList != _oldStates);
 }
 
 bool MultiStateSearcher::TestMatching(const string& _testString)
 {
 	Initialize(_testString);
 
-	while (stateList.size() && (!stringMatched))
+	list<FiniteAutoState> newStates;
+	list<FiniteAutoState> oldStates;
+
+	PassUnlabeledEdges(newStates, oldStates);
+
+	for (int strIndex = 0; strIndex != _testString.length(); ++strIndex)
 	{
-		list<FiniteAutoState> newStates;
+		newStates.clear();
+		oldStates.clear();
 
 		auto i = stateList.begin();
-		while ((i != stateList.end()) && (!stringMatched))
+		while (i != stateList.end())
 		{
-			i->GoNextState(_testString[testStringPos], newStates, this);
+			i->GoEdgesLabeledAs(string(1, _testString[strIndex]), newStates);
 			auto j = i++;
 			stateList.erase(j);
 		}
-
 		stateList.insert(stateList.end(), newStates.begin(), newStates.end());
-		newStates.clear();
-		testStringPos++;
+
+		PassUnlabeledEdges(newStates, oldStates);
 	}
 
-	return stringMatched;
+	return CheckFinalState();
+}
+
+bool MultiStateSearcher::CheckFinalState() const
+{
+	for (auto i : stateList)
+	{
+		if (i.GetAutoPos()->GetStatus() == Status::Final)
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
 
