@@ -2,11 +2,11 @@
 
 #include "Edge.h"
 
-Vertex::Vertex(const string& _name, const Status& _status) : name(_name), status(_status)
+Vertex::Vertex(const VertexStatus& _status) : status(_status)
 {
 }
 
-Vertex::Vertex(const Vertex& _copy) : name(_copy.name), inEdges(_copy.inEdges), outEdges(_copy.outEdges), status(_copy.status)
+Vertex::Vertex(const Vertex& _copy) : inEdges(_copy.inEdges), outEdges(_copy.outEdges), status(_copy.status)
 {
 }
 
@@ -16,16 +16,6 @@ Vertex::~Vertex()
 	{
 		delete *i;
 	}
-}
-
-const string& Vertex::GetName() const
-{
-	return name;
-}
-
-void Vertex::SetName(const string& _name)
-{
-	name = _name;
 }
 
 void Vertex::AddOutEdge(Edge* _edge)
@@ -54,22 +44,66 @@ void Vertex::RemoveInEdge(Edge* _edge)
 	inEdges.remove(_edge);
 }
 
-const list<Edge*>& Vertex::GetOutEdges() const
-{
-	return outEdges;
-}
-
 const list<Edge*>& Vertex::GetInEdges() const
 {
 	return inEdges;
 }
 
-const Status& Vertex::GetStatus() const
+const list<Edge*>& Vertex::GetOutEdges() const
+{
+	return outEdges;
+}
+
+list<Edge*>::const_iterator& Vertex::CInEdgesBegin() const
+{
+	return inEdges.cbegin();
+}
+
+list <Edge*>::const_iterator& Vertex::CInEdgesEnd() const
+{
+	return inEdges.cend();
+}
+
+#pragma region Setters/Getters for inEdges and outEdges lists
+
+list <Edge*>::iterator& Vertex::InEdgesBegin()
+{
+	return inEdges.begin();
+}
+
+list <Edge*>::iterator& Vertex::InEdgesEnd()
+{
+	return inEdges.end();
+}
+
+list<Edge*>::const_iterator& Vertex::COutEdgesBegin() const
+{
+	return outEdges.cbegin();
+}
+
+list <Edge*>::const_iterator& Vertex::COutEdgesEnd() const
+{
+	return outEdges.cend();
+}
+
+list <Edge*>::iterator& Vertex::OutEdgesBegin()
+{
+	return outEdges.begin();
+}
+
+list <Edge*>::iterator& Vertex::OutEdgesEnd()
+{
+	return outEdges.end();
+}
+
+#pragma endregion
+
+const VertexStatus& Vertex::GetStatus() const
 {
 	return status;
 }
 
-void Vertex::SetStatus(const Status& _status)
+void Vertex::SetStatus(const VertexStatus& _status)
 {
 	status = _status;
 }
@@ -77,5 +111,10 @@ void Vertex::SetStatus(const Status& _status)
 bool Vertex::operator ==(const Vertex& _vertex) const
 {
 	return ((status == _vertex.status) && (outEdges == _vertex.outEdges) && (inEdges == _vertex.inEdges));
+}
+
+bool Vertex::operator !=(const Vertex& _vertex) const
+{
+	return ((status != _vertex.status) || (outEdges != _vertex.outEdges) || (inEdges != _vertex.inEdges));
 }
 

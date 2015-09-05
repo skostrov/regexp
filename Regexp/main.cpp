@@ -63,8 +63,8 @@ void main()
 
 	/*FiniteAuto A;
 
-	A.AddVertex("start", Status::Start);
-	A.AddVertex("finish", Status::Final);
+	A.AddVertex("start", VertexStatus::Start);
+	A.AddVertex("finish", VertexStatus::Final);
 	A.AddVertex("q1");
 
 	A.AddEdge("start", "q1", "a");

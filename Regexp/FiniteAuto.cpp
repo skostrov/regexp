@@ -4,20 +4,20 @@
 
 namespace
 {
-	string GetColor(const Vertex& _vertex)
+	string GetColor(const Vertex* _vertex)
 	{
-		switch (_vertex.GetStatus())
+		switch (_vertex->GetStatus())
 		{
-		case Status::Final:
+		case VertexStatus::Final:
 			return "gray67";
-		case Status::Start:
+		case VertexStatus::Start:
 			return "gray93";
 		}
 
 		return "";
 	}
 
-	class SearchVertexByName
+	/*class SearchVertexByName
 	{
 	public:
 
@@ -46,7 +46,7 @@ namespace
 
 		string name;
 		string label;
-	};
+	};*/
 }
 
 FiniteAuto::FiniteAuto()
@@ -66,70 +66,74 @@ Vertex* FiniteAuto::GetStart() const
 	return start;
 }
 
-void FiniteAuto::AddVertex(const string& _name, const Status& _status)
+Vertex* FiniteAuto::AddVertex(const VertexStatus& _status)
 {
-	if (find_if(vertexList.cbegin(), vertexList.cend(), SearchVertexByName(_name)) == vertexList.cend())
+	Vertex* newVertex = new Vertex(_status);
+
+	vertexList.push_back(newVertex);
+
+	if (_status == VertexStatus::Start)
 	{
-		Vertex* newVertex = new Vertex(_name, _status);
-		vertexList.push_back(newVertex);
-		if (_status == Status::Start)
-		{
-			start = newVertex;
-		}
-		if (_status == Status::Final)
-		{
-			finalList.push_back(newVertex);
-		}
+		start = newVertex;
 	}
+
+	if (_status == VertexStatus::Final)
+	{
+		finalList.push_back(newVertex);
+	}
+
+	return newVertex;
 }
 
-void FiniteAuto::RemoveVertex(const string& _name)
+void FiniteAuto::RemoveVertex(Vertex* _vertex)
 {
-	Vertex* pVertex = *find_if(vertexList.cbegin(), vertexList.cend(), SearchVertexByName(_name));
-
-	auto i = pVertex->GetInEdges().begin();
-	while (i != pVertex->GetInEdges().end())
+	auto i = _vertex->InEdgesBegin();
+	while (i != _vertex->InEdgesEnd())
 	{
-		auto j = i;
+		auto previous = i;
 		++i;
-		RemoveEdge((*j)->GetSender()->GetName(), _name, (*j)->GetLabel());
+		RemoveEdge(*previous);
 	}
 	
-	auto k = pVertex->GetOutEdges().begin();
-	while (k != pVertex->GetOutEdges().end())
+	auto i = _vertex->GetOutEdges().begin();
+	while (i != _vertex->GetOutEdges().end())
 	{
-		auto l = k;
-		++k;
-		RemoveEdge(_name, (*l)->GetReceiver()->GetName(), (*l)->GetLabel());
+		auto previous = i;
+		++i;
+		RemoveEdge(*previous);
 	}
 
-	vertexList.remove(pVertex);
+	vertexList.remove(_vertex);
 
-	delete pVertex;
+	delete _vertex;
 }
 
-void FiniteAuto::AddEdge(const string& _sender, const string& _receiver, const string& _label)
+Edge* FiniteAuto::AddEdge(Vertex* _sender, Vertex* _receiver, const string& _label)
 {
-	Vertex* senderVertex = *find_if(vertexList.cbegin(), vertexList.cend(), SearchVertexByName(_sender));
-	Vertex* receiverVertex = *find_if(vertexList.cbegin(), vertexList.cend(), SearchVertexByName(_receiver));
+	Edge* newEdge = new Edge(_sender, _receiver, _label);
 
-	Edge* newEdge = new Edge(senderVertex, receiverVertex, _label);
+	_sender->AddOutEdge(newEdge);
+	_receiver->AddInEdge(newEdge);
 
-	senderVertex->AddOutEdge(newEdge);
-	receiverVertex->AddInEdge(newEdge);
+	return newEdge;
 }
 
-void FiniteAuto::RemoveEdge(const string& _sender, const string& _receiver, const string& _label)
+void FiniteAuto::RemoveEdge(Vertex* _sender, Vertex* _receiver, const string& _label)
 {
-	Vertex* pSender = *find_if(vertexList.cbegin(), vertexList.cend(), SearchVertexByName(_sender));
-	Vertex* pReceiver = *find_if(vertexList.cbegin(), vertexList.cend(), SearchVertexByName(_receiver));
+	Edge* pEdge = *find_if(_sender->COutEdgesBegin(), _sender->COutEdgesEnd(), [_label](const Edge* _edge) { return _edge->GetLabel() == _label; });
 
-	Edge* pEdge = *find_if(pSender->GetOutEdges().cbegin(), pSender->GetOutEdges().cend(), SearchEdgeBySenderNameAndLabel(pSender->GetName(), _label));
-
-	pSender->RemoveOutEdge(pEdge);
-	pReceiver->RemoveInEdge(pEdge);
+	_sender->RemoveOutEdge(pEdge);
+	_receiver->RemoveInEdge(pEdge);
 
 	delete pEdge;
+}
+
+void FiniteAuto::RemoveEdge(Edge* _edge)
+{
+	_edge->GetSender()->RemoveOutEdge(_edge);
+	_edge->GetReceiver()->RemoveInEdge(_edge);
+
+	delete _edge;
 }
 
 const list<Vertex*>& FiniteAuto::GetVertexList() const
@@ -156,7 +160,7 @@ void FiniteAuto::SaveImage(const string& dotExe, const string& dotFile, const st
 {
 	for (auto i : vertexList)
 	{
-		drawer.AddVertex(i->GetName(), "", GetColor(*i));
+		drawer.AddVertex(i, "", GetColor(i));
 		for (list<Edge*>::const_iterator j = i->GetOutEdges().cbegin(); j != i->GetOutEdges().cend(); j++)
 		{
 			drawer.AddEdge((*j)->GetSender()->GetName(), (*j)->GetReceiver()->GetName(), (*j)->GetLabel());

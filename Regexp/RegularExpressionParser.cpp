@@ -184,14 +184,14 @@ void ParseTreeToFAConverter::PlotFA()
 
 		// visit
 		
-		auto st = Status::Normal;
+		auto st = VertexStatus::Normal;
 		if ( item == s )
 		{
-			st = Status::Start;
+			st = VertexStatus::Start;
 		}
 		else if ( item == f )
 		{
-			st = Status::Final;
+			st = VertexStatus::Final;
 		}
 
 		fa->AddVertex( "V" + to_string( ( int )item ), st );

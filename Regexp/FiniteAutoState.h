@@ -16,8 +16,6 @@ public:
 
 	bool operator ==(const FiniteAutoState& _state) const;
 
-	//void GoNextState(const char& _symbol, list<FiniteAutoState>& _stateList, MultiStateSearcher* _searcher);
-
 	bool GoEdgesLabeledAs(const string& _label, list<FiniteAutoState>& _stateList);
 
 private:

@@ -16,14 +16,14 @@ public:
 
 	Vertex* GetStart() const;
 
-	void AddVertex(const string& _name, const Status& _status = Status::Normal);
-	void RemoveVertex(const string& _name);
+	Vertex* AddVertex(const VertexStatus& _status = VertexStatus::Normal);
+	void RemoveVertex(Vertex* _veretex);
 
-	void AddEdge(const string& _sender, const string& _receiver, const string& _label);
-	void RemoveEdge(const string& _sender, const string& _receiver, const string& _label);
+	Edge* AddEdge(Vertex* _sender, Vertex* _receiver, const string& _label);
+	void RemoveEdge(Vertex* _sender, Vertex* _receiver, const string& _label);
+	void RemoveEdge(Edge* _edge);
 
 	const list<Vertex*>& GetVertexList() const;
-
 	const list<Vertex*>& GetFinalList() const;
 
 	void SetDrawer(const Dot& _drawer);

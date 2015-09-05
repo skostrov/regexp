@@ -99,7 +99,7 @@ bool MultiStateSearcher::CheckFinalState() const
 {
 	for (auto i : stateList)
 	{
-		if (i.GetAutoPos()->GetStatus() == Status::Final)
+		if (i.GetAutoPos()->GetStatus() == VertexStatus::Final)
 		{
 			return true;
 		}
