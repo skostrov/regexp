@@ -41,11 +41,11 @@ GraphicFiniteAuto::~GraphicFiniteAuto()
 
 void GraphicFiniteAuto::SaveImage(const string& _dotExe, const string& _dotFile, const string& _pngFile)
 {
-	for (auto i : vertexList)
+	for (const auto& i : vertexList)
 	{
 		drawer.AddVertex(GetVertexName(i), "", GetVertexColor(i));
 
-		for (auto j : i->GetOutEdges())
+		for (const auto& j : i->GetOutEdges())
 		{
 			drawer.AddEdge(GetVertexName(j->GetSender()), GetVertexName(j->GetReceiver()), j->GetLabel());
 		}

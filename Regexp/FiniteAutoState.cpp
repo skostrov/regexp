@@ -41,11 +41,11 @@ bool FiniteAutoState::GoEdgesLabeledAs(const string& _label, list<FiniteAutoStat
 	{
 		result = true;
 
-		for (auto i = autoPos->COutEdgesBegin(); i != autoPos->COutEdgesEnd(); ++i)
+		for (const auto& i : autoPos->GetOutEdges())
 		{
-			if ((*i)->GetLabel() == _label)
+			if (i->GetLabel() == _label)
 			{
-				_stateList.push_back(FiniteAutoState((*i)->GetReceiver()));
+				_stateList.push_back(FiniteAutoState(i->GetReceiver()));
 			}
 			else
 			{

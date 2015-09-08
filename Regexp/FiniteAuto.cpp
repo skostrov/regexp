@@ -8,9 +8,9 @@ FiniteAuto::FiniteAuto()
 
 FiniteAuto::~FiniteAuto()
 {
-	for (auto i = vertexList.cbegin(); i != vertexList.cend(); i++)
+	for (auto& i : vertexList)
 	{
-		delete *i;
+		delete i;
 	}
 
 	vertexList.clear();
@@ -95,30 +95,4 @@ const list<Vertex*>& FiniteAuto::GetFinalList() const
 {
 	return finalList;
 }
-
-/*void FiniteAuto::SetDrawer(const Dot& _drawer)
-{
-	drawer = _drawer;
-}
-
-const Dot& FiniteAuto::GetDrawer() const
-{
-	return drawer;
-}
-
-void FiniteAuto::SaveImage(const string& dotExe, const string& dotFile, const string& pngFile)
-{
-	for (auto i : vertexList)
-	{
-		drawer.AddVertex(i, "", GetColor(i));
-		for (list<Edge*>::const_iterator j = i->GetOutEdges().cbegin(); j != i->GetOutEdges().cend(); j++)
-		{
-			drawer.AddEdge((*j)->GetSender()->GetName(), (*j)->GetReceiver()->GetName(), (*j)->GetLabel());
-		}
-	}
-
-	drawer.Plot();
-	drawer.SaveDot(dotFile);
-	drawer.SaveImage(dotExe, dotFile, pngFile);
-}*/
 

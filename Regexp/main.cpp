@@ -9,7 +9,7 @@
 
 void main()
 {
-	string regexp = "(ab)*";
+	string regexp = "(ab | b)*";
 	RegularExpressionParser parser;
 	auto s = parser.Parse(regexp);
 	if (s)
@@ -32,7 +32,7 @@ void main()
 
 		MultiStateSearcher M(fa);
 
-		vector<string> tests = { "abab", "abbb", "baba", "aaaa" };
+		vector<string> tests = { "abab", "abbb", "baba", "aaaa", "bbbb" };
 
 		for (const auto& i : tests)
 		{
