@@ -35,3 +35,5 @@ tests/
 *.suo
 *.user
 *.old
+*.vcxproj
+*.vcxproj.filters
