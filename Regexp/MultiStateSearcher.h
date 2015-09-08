@@ -28,5 +28,6 @@ private:
 
 	FiniteAuto* automaton;
 	list<FiniteAutoState> stateList;
+
 };
 

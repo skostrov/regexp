@@ -51,5 +51,6 @@ private:
 	list<Edge*> inEdges;
 	list<Edge*> outEdges;
 	VertexStatus status;
+
 };
 

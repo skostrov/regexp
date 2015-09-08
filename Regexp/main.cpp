@@ -32,7 +32,7 @@ void main()
 
 		MultiStateSearcher M(fa);
 
-		vector<string> tests = { "abba", "abab", "baba", "aaaa", "bbbb" };
+		vector<string> tests = { "abab", "abbb", "baba", "aaaa" };
 
 		for (const auto& i : tests)
 		{

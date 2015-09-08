@@ -7,6 +7,7 @@ class Vertex;
 class FiniteAutoState
 {
 public:
+
 	FiniteAutoState(Vertex* _vertex);
 	FiniteAutoState(const FiniteAutoState& _state);
 	~FiniteAutoState();
@@ -21,5 +22,6 @@ public:
 private:
 	
 	Vertex* autoPos;
+
 };
 

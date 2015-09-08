@@ -7,6 +7,7 @@ class Vertex;
 class Edge
 {
 public:
+
 	Edge(Vertex* _sender, Vertex* _receiver, const string& label);
 	Edge(const Edge& _copy);
 	~Edge();
@@ -21,8 +22,10 @@ public:
 	void SetLabel(const string& _label);
 
 private:
+
 	Vertex* sender;
 	Vertex* receiver;
 	string label;
+
 };
 

@@ -1,5 +1,4 @@
 #include "FiniteAuto.h"
-#include "Vertex.h"
 #include "Edge.h"
 
 

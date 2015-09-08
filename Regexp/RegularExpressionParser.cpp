@@ -135,7 +135,7 @@ void RegularExpressionParser::PlotDotForParseTree(TreeVertex root, const string&
 	dot.SaveImage(dotExe, dotFile, pngFile);
 }
 
-ParseTreeToFAConverter::ParseTreeToFAConverter( RegularExpressionParser::ParseTree t ):
+ParseTreeToFAConverter::ParseTreeToFAConverter(RegularExpressionParser::ParseTree t):
 	tree(t),
 	fa(nullptr),
 	s(nullptr),
@@ -143,7 +143,7 @@ ParseTreeToFAConverter::ParseTreeToFAConverter( RegularExpressionParser::ParseTr
 {
 }
 
-ParseTreeToFAConverter::E::E( V* sv, V* fv, R *l, string c ):
+ParseTreeToFAConverter::E::E(V* sv, V* fv, R *l, string c):
 	Vs(sv),
 	Vf(fv),
 	L(l),

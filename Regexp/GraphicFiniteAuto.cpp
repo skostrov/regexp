@@ -45,9 +45,9 @@ void GraphicFiniteAuto::SaveImage(const string& _dotExe, const string& _dotFile,
 	{
 		drawer.AddVertex(GetVertexName(i), "", GetVertexColor(i));
 
-		for (list<Edge*>::const_iterator j = i->COutEdgesBegin(); j != i->COutEdgesEnd(); ++j)
+		for (auto j : i->GetOutEdges())
 		{
-			drawer.AddEdge(GetVertexName((*j)->GetSender()), GetVertexName((*j)->GetReceiver()), (*j)->GetLabel());
+			drawer.AddEdge(GetVertexName(j->GetSender()), GetVertexName(j->GetReceiver()), j->GetLabel());
 		}
 	}
 

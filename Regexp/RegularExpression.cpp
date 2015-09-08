@@ -1,6 +1,6 @@
 #include "RegularExpression.h"
 
-RegularExpression::RegularExpression(string expression, bool lazy):
+RegularExpression::RegularExpression(string expression, bool lazy) :
 	lazyCompilation(lazy),
 	isCompiled(false)
 {

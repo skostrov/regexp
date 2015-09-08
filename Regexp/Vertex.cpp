@@ -2,11 +2,15 @@
 
 #include "Edge.h"
 
-Vertex::Vertex(const VertexStatus& _status) : status(_status)
+Vertex::Vertex(const VertexStatus& _status) : 
+	status(_status)
 {
 }
 
-Vertex::Vertex(const Vertex& _copy) : inEdges(_copy.inEdges), outEdges(_copy.outEdges), status(_copy.status)
+Vertex::Vertex(const Vertex& _copy) : 
+	inEdges(_copy.inEdges), 
+	outEdges(_copy.outEdges), 
+	status(_copy.status)
 {
 }
 

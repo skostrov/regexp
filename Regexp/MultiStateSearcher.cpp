@@ -3,12 +3,15 @@
 #include "FiniteAutoState.h"
 
 
-MultiStateSearcher::MultiStateSearcher(FiniteAuto* _auto) : automaton(_auto)
+MultiStateSearcher::MultiStateSearcher(FiniteAuto* _auto) : 
+	automaton(_auto)
 {
 	stateList.push_back(FiniteAutoState(automaton->GetStart()));
 }
 
-MultiStateSearcher::MultiStateSearcher(const MultiStateSearcher& _searcher) : automaton(_searcher.automaton), stateList(_searcher.stateList)
+MultiStateSearcher::MultiStateSearcher(const MultiStateSearcher& _searcher) : 
+	automaton(_searcher.automaton), 
+	stateList(_searcher.stateList)
 {
 }
 
@@ -61,9 +64,14 @@ void MultiStateSearcher::PassUnlabeledEdges(list<FiniteAutoState>& _newStates, l
 				++i;
 			}
 		}
-		stateList.insert(stateList.end(), _newStates.begin(), _newStates.end());
-		//stateList.sort();
-		stateList.unique();
+
+		for (auto& i : _newStates)
+		{
+			if (find(stateList.cbegin(), stateList.cend(), i) == stateList.cend())
+			{
+				stateList.push_back(i);
+			}
+		}
 
 	} while (stateList != _oldStates);
 }

@@ -4,11 +4,13 @@
 #include "MultiStateSearcher.h"
 
 
-FiniteAutoState::FiniteAutoState(Vertex* _vertex) : autoPos(_vertex)
+FiniteAutoState::FiniteAutoState(Vertex* _vertex) : 
+	autoPos(_vertex)
 {
 }
 
-FiniteAutoState::FiniteAutoState(const FiniteAutoState& _state) : autoPos(_state.autoPos)
+FiniteAutoState::FiniteAutoState(const FiniteAutoState& _state) : 
+	autoPos(_state.autoPos)
 {
 }
 

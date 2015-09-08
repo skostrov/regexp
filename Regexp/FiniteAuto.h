@@ -5,7 +5,6 @@
 
 class Edge;
 
-
 class FiniteAuto
 {
 public:
@@ -25,21 +24,11 @@ public:
 	const list<Vertex*>& GetVertexList() const;
 	const list<Vertex*>& GetFinalList() const;
 
-	//void SetDrawer(const Dot& _drawer);
-	//const Dot& GetDrawer() const;
-
-	//void SaveImage(const string& dotExe, const string& dotFile, const string& pngFile);
-
 protected:
 
 	list<Vertex*> vertexList;
 	Vertex* start;
 	list<Vertex*> finalList;
-	//Dot drawer;
 
-private:
-
-	FiniteAuto(const FiniteAuto& _auto);
-	void operator =(const FiniteAuto& _auto);
 };
 
