@@ -156,7 +156,7 @@ ParseTreeToFAConverter::E::E( V* sv, V* fv, R *l, string c ):
 
 void ParseTreeToFAConverter::PlotFA()
 {
-	s = new V();
+	/*s = new V();
 	f = new V();
 
 	AppednRuleToE( new E( s, f, tree.get() ) );
@@ -250,7 +250,7 @@ void ParseTreeToFAConverter::PlotFA()
 					it->C  );
 			}
 		}
-	}
+	}*/
 }
 
 void ParseTreeToFAConverter::AppednRuleToE( E* e )
