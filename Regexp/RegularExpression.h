@@ -6,16 +6,16 @@ class RegularExpression
 {
 public:
 
-						RegularExpression( string expression, bool lazyCompilation = false );
-						~RegularExpression();
+	RegularExpression( string expression, bool lazyCompilation = false );
+	~RegularExpression();
 
-	bool				IsMatch( string inputString );
+	bool IsMatch( string inputString );
 
 private:
 
-	string				expression;
-	bool				lazyCompilation;
-	bool				isCompiled;
+	string expression;
+	bool lazyCompilation;
+	bool isCompiled;
 
-	void				Compile();
+	void Compile();
 };

@@ -15,27 +15,27 @@ public:
 	typedef Parser::PToken* TreeVertex;
 	typedef shared_ptr<Parser::PToken> ParseTree;
 
-						RegularExpressionParser();
-						~RegularExpressionParser();
+	RegularExpressionParser();
+	~RegularExpressionParser();
 
-	ParseTree			Parse( string expression );
+	ParseTree Parse(string expression);
 
-	void				DepthFirstSearchOnParseTree( TreeVertex root, function<void(TreeVertex)> visitor );
+	void DepthFirstSearchOnParseTree(TreeVertex root, function<void(TreeVertex)> visitor);
 
-	void				PlotDotForParseTree( TreeVertex root, const string& dotExe, const string& dotFile, const string& pngFile );
+	void PlotDotForParseTree(TreeVertex root, const string& dotExe, const string& dotFile, const string& pngFile);
 };
 
 class ParseTreeToFAConverter
 {
 public:
 
-						ParseTreeToFAConverter( RegularExpressionParser::ParseTree tree );
+	ParseTreeToFAConverter(RegularExpressionParser::ParseTree tree);
 
-	void				PlotFA();
-	void				PlotDotForGeneratedFA( const string& dotExe, const string& dotFile, const string& pngFile );
+	void PlotFA();
+	void PlotDotForGeneratedFA(const string& dotExe, const string& dotFile, const string& pngFile);
 
 
-	GraphicFiniteAuto*			GetFA() const { return fa; }
+	GraphicFiniteAuto* GetFA() const;
 
 private:
 
@@ -44,11 +44,12 @@ private:
 
 	struct E
 	{
-		V *Vs, *Vf;
-		R *L;
+		V* Vs;
+		V* Vf;
+		R* L;
 		string C;
 
-		E( V* sv, V* fv, R *l, string c = "" );
+		E(V* sv, V* fv, R *l, string c = "");
 	};
 
 	struct V
@@ -57,9 +58,10 @@ private:
 	};
 
 	RegularExpressionParser::ParseTree tree;
-	V					*s, *f;
-	GraphicFiniteAuto*			fa;
+	V* s;
+	V* f;
+	GraphicFiniteAuto* fa;
 
-	void				AppednRuleToE( E* e );
-	void				RemoveE( E* e );
+	void AppednRuleToE(E* e);
+	void RemoveE(E* e);
 };
