@@ -2,52 +2,6 @@
 #include "Vertex.h"
 #include "Edge.h"
 
-namespace
-{
-	string GetColor(const Vertex* _vertex)
-	{
-		switch (_vertex->GetStatus())
-		{
-		case VertexStatus::Final:
-			return "gray67";
-		case VertexStatus::Start:
-			return "gray93";
-		}
-
-		return "";
-	}
-
-	/*class SearchVertexByName
-	{
-	public:
-
-		SearchVertexByName(const string& _name) : name(_name) {}
-		bool operator ()(const Vertex* operand)
-		{
-			return operand->GetName() == name;
-		}
-
-	private:
-
-		string name;
-	};
-
-	class SearchEdgeBySenderNameAndLabel
-	{
-	public:
-
-		SearchEdgeBySenderNameAndLabel(const string& _name, const string& _label) : name(_name), label(_label) {}
-		bool operator ()(const Edge* operand)
-		{
-			return ((operand->GetSender()->GetName() == name) && (operand->GetLabel() == label));
-		}
-
-	private:
-
-		string name;
-		string label;
-	};*/
-}
 
 FiniteAuto::FiniteAuto()
 {
@@ -59,6 +13,10 @@ FiniteAuto::~FiniteAuto()
 	{
 		delete *i;
 	}
+
+	vertexList.clear();
+	finalList.clear();
+	start = nullptr;
 }
 
 Vertex* FiniteAuto::GetStart() const
@@ -88,15 +46,8 @@ Vertex* FiniteAuto::AddVertex(const VertexStatus& _status)
 void FiniteAuto::RemoveVertex(Vertex* _vertex)
 {
 	auto i = _vertex->InEdgesBegin();
+
 	while (i != _vertex->InEdgesEnd())
-	{
-		auto previous = i;
-		++i;
-		RemoveEdge(*previous);
-	}
-	
-	auto i = _vertex->GetOutEdges().begin();
-	while (i != _vertex->GetOutEdges().end())
 	{
 		auto previous = i;
 		++i;
@@ -146,7 +97,7 @@ const list<Vertex*>& FiniteAuto::GetFinalList() const
 	return finalList;
 }
 
-void FiniteAuto::SetDrawer(const Dot& _drawer)
+/*void FiniteAuto::SetDrawer(const Dot& _drawer)
 {
 	drawer = _drawer;
 }
@@ -170,5 +121,5 @@ void FiniteAuto::SaveImage(const string& dotExe, const string& dotFile, const st
 	drawer.Plot();
 	drawer.SaveDot(dotFile);
 	drawer.SaveImage(dotExe, dotFile, pngFile);
-}
+}*/
 

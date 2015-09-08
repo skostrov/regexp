@@ -194,7 +194,7 @@ void ParseTreeToFAConverter::PlotFA()
 			st = VertexStatus::Final;
 		}
 
-		fa->AddVertex( "V" + to_string( ( int )item ), st );
+		fa->AddVertex( ( item ), st );
 
 		// childs
 	

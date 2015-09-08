@@ -62,6 +62,8 @@ void MultiStateSearcher::PassUnlabeledEdges(list<FiniteAutoState>& _newStates, l
 			}
 		}
 		stateList.insert(stateList.end(), _newStates.begin(), _newStates.end());
+		//stateList.sort();
+		stateList.unique();
 
 	} while (stateList != _oldStates);
 }

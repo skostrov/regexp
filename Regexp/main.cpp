@@ -4,6 +4,7 @@
 #include "MultiStateSearcher.h"
 #include "RegularExpressionParser.h"
 #include "FiniteAuto.h"
+#include "GraphicFiniteAuto.h"
 #include "Vertex.h"
 #include "Edge.h"
 
@@ -13,7 +14,7 @@ void main()
 	wcin.imbue( locale( "rus_rus.866" ) );
 
 	RegularExpressionParser parser;
-	auto s = parser.Parse( "(a | b | c | 1 | 2 | 3) (a | b | c | 1 | 2 | 3)*" );
+	auto s = parser.Parse( "(a | b)*" );
 	//auto s = parser.Parse( "(ab)*" );
 	if ( s )
 	{
@@ -32,13 +33,13 @@ void main()
 			"./../tests/testfa.png" );
 
 		auto fa = converter.GetFA();
-		fa->SaveImage( "C:/Program Files (x86)/Graphviz/bin/dot.exe",
-			"./../tests/FiniteAuto.dot",
-			"./../tests/FiniteAuto.png" );
+		//fa->SaveImage( "C:/Program Files (x86)/Graphviz/bin/dot.exe",
+		//	"./../tests/FiniteAuto.dot",
+		//	"./../tests/FiniteAuto.png" );
 
 		MultiStateSearcher M(fa);
 
-		vector<string> tests = { "ab1231cccc32aaaaabbabbbbcccccccbbbbbaa123212122233333" };
+		vector<string> tests = { "ab1231cccc32" };
 
 		for (auto i : tests)
 		{
@@ -46,11 +47,11 @@ void main()
 
 			if (test)
 			{
-				cout << setw(50) << left << i << "+" << endl;
+				cout << setw(30) << left << i << "+" << endl;
 			}
 			else
 			{
-				cout << setw(50) << left << i << "-" << endl;
+				cout << setw(30) << left << i << "-" << endl;
 			}
 		}
 
@@ -61,21 +62,21 @@ void main()
 		WriteLine( "FAIL" );
 	}
 
-	/*FiniteAuto A;
+	/*GraphicFiniteAuto A;
 
-	A.AddVertex("start", VertexStatus::Start);
-	A.AddVertex("finish", VertexStatus::Final);
-	A.AddVertex("q1");
+	Vertex* start = A.AddVertex(VertexStatus::Start);
+	Vertex* q = A.AddVertex();
+	Vertex* finish = A.AddVertex(VertexStatus::Final);
 
-	A.AddEdge("start", "q1", "a");
-	A.AddEdge("q1", "q1", "a");
-	A.AddEdge("q1", "finish", "");
+	A.AddEdge(start, q, "");
+	A.AddEdge(q, q, "b");
+	A.AddEdge(q, finish, "");
 
-	A.SaveImage("C:/Program Files (x86)/Graphviz/bin/dot.exe", "./../tests/FiniteAuto.dot", "./../tests/FiniteAuto.png");
+	A.SaveImage();
 
 	MultiStateSearcher M(&A);
 
-	vector<string> tests = { "abaaaa" };
+	vector<string> tests = { "bbbbbb", "aba", "abba", "abbbbbbba", "abbbb", "bbbba", "" };
 
 	for (auto i : tests)
 	{

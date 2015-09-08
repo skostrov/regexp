@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Common.h"
-#include "Dot.h"
 #include "Vertex.h"
 
 class Edge;
@@ -12,7 +11,7 @@ class FiniteAuto
 public:
 
 	FiniteAuto();
-	~FiniteAuto();
+	virtual ~FiniteAuto();
 
 	Vertex* GetStart() const;
 
@@ -26,17 +25,19 @@ public:
 	const list<Vertex*>& GetVertexList() const;
 	const list<Vertex*>& GetFinalList() const;
 
-	void SetDrawer(const Dot& _drawer);
-	const Dot& GetDrawer() const;
+	//void SetDrawer(const Dot& _drawer);
+	//const Dot& GetDrawer() const;
 
-	void SaveImage(const string& dotExe, const string& dotFile, const string& pngFile);
+	//void SaveImage(const string& dotExe, const string& dotFile, const string& pngFile);
 
-private:
+protected:
 
 	list<Vertex*> vertexList;
 	Vertex* start;
 	list<Vertex*> finalList;
-	Dot drawer;
+	//Dot drawer;
+
+private:
 
 	FiniteAuto(const FiniteAuto& _auto);
 	void operator =(const FiniteAuto& _auto);

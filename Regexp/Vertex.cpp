@@ -44,54 +44,54 @@ void Vertex::RemoveInEdge(Edge* _edge)
 	inEdges.remove(_edge);
 }
 
-const list<Edge*>& Vertex::GetInEdges() const
+const list<Edge*> Vertex::GetInEdges() const
 {
 	return inEdges;
 }
 
-const list<Edge*>& Vertex::GetOutEdges() const
+const list<Edge*> Vertex::GetOutEdges() const
 {
 	return outEdges;
 }
 
-list<Edge*>::const_iterator& Vertex::CInEdgesBegin() const
+list<Edge*>::const_iterator Vertex::CInEdgesBegin() const
 {
 	return inEdges.cbegin();
 }
 
-list <Edge*>::const_iterator& Vertex::CInEdgesEnd() const
+list <Edge*>::const_iterator Vertex::CInEdgesEnd() const
 {
 	return inEdges.cend();
 }
 
 #pragma region Setters/Getters for inEdges and outEdges lists
 
-list <Edge*>::iterator& Vertex::InEdgesBegin()
+list <Edge*>::iterator Vertex::InEdgesBegin()
 {
 	return inEdges.begin();
 }
 
-list <Edge*>::iterator& Vertex::InEdgesEnd()
+list <Edge*>::iterator Vertex::InEdgesEnd()
 {
 	return inEdges.end();
 }
 
-list<Edge*>::const_iterator& Vertex::COutEdgesBegin() const
+list<Edge*>::const_iterator Vertex::COutEdgesBegin() const
 {
 	return outEdges.cbegin();
 }
 
-list <Edge*>::const_iterator& Vertex::COutEdgesEnd() const
+list <Edge*>::const_iterator Vertex::COutEdgesEnd() const
 {
 	return outEdges.cend();
 }
 
-list <Edge*>::iterator& Vertex::OutEdgesBegin()
+list <Edge*>::iterator Vertex::OutEdgesBegin()
 {
 	return outEdges.begin();
 }
 
-list <Edge*>::iterator& Vertex::OutEdgesEnd()
+list <Edge*>::iterator Vertex::OutEdgesEnd()
 {
 	return outEdges.end();
 }
