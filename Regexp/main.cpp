@@ -13,7 +13,7 @@ void main()
 	wcout.imbue( locale( "rus_rus.866" ) );
 	wcin.imbue( locale( "rus_rus.866" ) );
 
-	/*RegularExpressionParser parser;
+	RegularExpressionParser parser;
 	auto s = parser.Parse( "(a | b)*" );
 	//auto s = parser.Parse( "(ab)*" );
 	if ( s )
@@ -39,13 +39,13 @@ void main()
 
 		MultiStateSearcher M(fa);
 
-		vector<string> tests = { "ab1231cccc32" };
+		vector<string> tests = { "abba" };
 
-		for (auto i : tests)
+		for ( const auto& i : tests )
 		{
 			bool test = M.TestMatching(i);
 
-			if (test)
+			if ( test )
 			{
 				cout << setw(30) << left << i << "+" << endl;
 			}
@@ -60,9 +60,9 @@ void main()
 	else
 	{
 		WriteLine( "FAIL" );
-	}*/
+	}
 
-	GraphicFiniteAuto A;
+	/*GraphicFiniteAuto A;
 
 	Vertex* start = A.AddVertex(VertexStatus::Start);
 	Vertex* q = A.AddVertex();
@@ -93,5 +93,5 @@ void main()
 	}
 
 	_getch();
-
+	*/
 }

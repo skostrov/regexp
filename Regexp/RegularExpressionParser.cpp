@@ -156,7 +156,7 @@ ParseTreeToFAConverter::E::E( V* sv, V* fv, R *l, string c ):
 
 void ParseTreeToFAConverter::PlotFA()
 {
-	/*s = new V();
+	s = new V();
 	f = new V();
 
 	AppednRuleToE( new E( s, f, tree.get() ) );
@@ -166,6 +166,7 @@ void ParseTreeToFAConverter::PlotFA()
 	auto q = stack<V*>();
 	auto qm = unordered_map<V*,bool>();
 	auto em = unordered_map<E*,bool>();
+	auto tt = unordered_map<V*,Vertex*>();
 
 	q = stack<V*>();
 	qm.clear();
@@ -194,7 +195,8 @@ void ParseTreeToFAConverter::PlotFA()
 			st = VertexStatus::Final;
 		}
 
-		fa->AddVertex( ( item ), st );
+		auto nv = fa->AddVertex( st );
+		tt[item] = nv; 
 
 		// childs
 	
@@ -231,9 +233,7 @@ void ParseTreeToFAConverter::PlotFA()
 			{
 				em[it] = true;
 
-				fa->AddEdge( "V" + to_string( ( int )item ),
-					"V" + to_string( ( int )( it->Vf ) ),
-					it->C );
+				fa->AddEdge( tt[item], tt[it->Vf], it->C );
 			}
 			
 			q.push( it->Vf );
@@ -245,12 +245,10 @@ void ParseTreeToFAConverter::PlotFA()
 			{
 				em[it] = true;
 
-				fa->AddEdge( "V" + to_string( ( int )( it->Vs ) ),
-					"V" + to_string( ( int )item ),
-					it->C  );
+				fa->AddEdge( tt[it->Vs], tt[item], it->C );
 			}
 		}
-	}*/
+	}
 }
 
 void ParseTreeToFAConverter::AppednRuleToE( E* e )
