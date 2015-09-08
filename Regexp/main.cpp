@@ -13,7 +13,7 @@ void main()
 	wcout.imbue( locale( "rus_rus.866" ) );
 	wcin.imbue( locale( "rus_rus.866" ) );
 
-	RegularExpressionParser parser;
+	/*RegularExpressionParser parser;
 	auto s = parser.Parse( "(a | b)*" );
 	//auto s = parser.Parse( "(ab)*" );
 	if ( s )
@@ -60,9 +60,9 @@ void main()
 	else
 	{
 		WriteLine( "FAIL" );
-	}
+	}*/
 
-	/*GraphicFiniteAuto A;
+	GraphicFiniteAuto A;
 
 	Vertex* start = A.AddVertex(VertexStatus::Start);
 	Vertex* q = A.AddVertex();
@@ -92,6 +92,6 @@ void main()
 		}
 	}
 
-	_getch();*/
+	_getch();
 
 }
