@@ -6,7 +6,7 @@
 
 using namespace RegexpParsing;
 
-class FiniteAuto;
+class GraphicFiniteAuto;
 
 class RegularExpressionParser
 {
@@ -35,7 +35,7 @@ public:
 	void				PlotDotForGeneratedFA( const string& dotExe, const string& dotFile, const string& pngFile );
 
 
-	FiniteAuto*			GetFA() const { return fa; }
+	GraphicFiniteAuto*			GetFA() const { return fa; }
 
 private:
 
@@ -58,7 +58,7 @@ private:
 
 	RegularExpressionParser::ParseTree tree;
 	V					*s, *f;
-	FiniteAuto*			fa;
+	GraphicFiniteAuto*			fa;
 
 	void				AppednRuleToE( E* e );
 	void				RemoveE( E* e );

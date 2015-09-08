@@ -14,8 +14,7 @@ void main()
 	wcin.imbue( locale( "rus_rus.866" ) );
 
 	RegularExpressionParser parser;
-	auto s = parser.Parse( "(a | b)*" );
-	//auto s = parser.Parse( "(ab)*" );
+	auto s = parser.Parse( "(ab)*" );
 	if ( s )
 	{
 		WriteLine( "OK" );
@@ -33,9 +32,9 @@ void main()
 			"./../tests/testfa.png" );
 
 		auto fa = converter.GetFA();
-		//fa->SaveImage( "C:/Program Files (x86)/Graphviz/bin/dot.exe",
-		//	"./../tests/FiniteAuto.dot",
-		//	"./../tests/FiniteAuto.png" );
+		fa->SaveImage( "C:/Program Files (x86)/Graphviz/bin/dot.exe",
+			"./../tests/FiniteAuto.dot",
+			"./../tests/FiniteAuto.png" );
 
 		MultiStateSearcher M(fa);
 
@@ -61,37 +60,4 @@ void main()
 	{
 		WriteLine( "FAIL" );
 	}
-
-	/*GraphicFiniteAuto A;
-
-	Vertex* start = A.AddVertex(VertexStatus::Start);
-	Vertex* q = A.AddVertex();
-	Vertex* finish = A.AddVertex(VertexStatus::Final);
-
-	A.AddEdge(start, q, "");
-	A.AddEdge(q, q, "b");
-	A.AddEdge(q, finish, "");
-
-	A.SaveImage();
-
-	MultiStateSearcher M(&A);
-
-	vector<string> tests = { "bbbbbb", "aba", "abba", "abbbbbbba", "abbbb", "bbbba", "" };
-
-	for (auto i : tests)
-	{
-		bool test = M.TestMatching(i);
-
-		if (test)
-		{
-			cout << setw(20) << left << i << "+" << endl;
-		}
-		else
-		{
-			cout << setw(20) << left << i << "-" << endl;
-		}
-	}
-
-	_getch();
-	*/
 }

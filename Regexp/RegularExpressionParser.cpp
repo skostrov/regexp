@@ -1,7 +1,7 @@
 #include "RegularExpressionParser.h"
 
 #include "Dot.h"
-#include "FiniteAuto.h"
+#include "GraphicFiniteAuto.h"
 
 namespace
 {
@@ -161,7 +161,7 @@ void ParseTreeToFAConverter::PlotFA()
 
 	AppednRuleToE( new E( s, f, tree.get() ) );
 
-	fa = new FiniteAuto();
+	fa = new GraphicFiniteAuto();
 
 	auto q = stack<V*>();
 	auto qm = unordered_map<V*,bool>();
@@ -222,8 +222,6 @@ void ParseTreeToFAConverter::PlotFA()
 		qm[item] = true;
 
 		// visit
-		
-		//fa->AddVertex( "V" + to_string( ( int )item ) );
 
 		// childs
 	
@@ -308,8 +306,6 @@ void ParseTreeToFAConverter::AppednRuleToE( E* e )
 				auto enl = new E( fn, sn, nullptr );
 				auto es = new E( e->Vs, sn, nullptr );
 				auto ef = new E( fn, e->Vf, nullptr );
-
-				//RemoveE( e );
 
 				AppednRuleToE( en );
 			}
