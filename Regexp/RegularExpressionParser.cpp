@@ -17,7 +17,7 @@ namespace
 				vertexNum++;
 	
 				dot.AddEdge("V" + to_string(vn), "V" + to_string(vertexNum));
-				VisitStack( vertex->P1, vertexNum, dot );
+				VisitStack(vertex->P1, vertexNum, dot);
 	
 				dot.AddEdge("V" + to_string(vn), "V" + to_string(vertexNum));
 				VisitStack(vertex->P2, vertexNum, dot);

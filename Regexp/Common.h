@@ -24,12 +24,12 @@
 
 using namespace std;
 
-static inline void Write(string s)
+static inline void Write(string s = "")
 {
-	cout << s << endl;
+	cout << s;
 }
 
-static inline void WriteLine(string s)
+static inline void WriteLine(string s = "")
 {
 	cout << s << endl;
 }
