@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Common.h"
-#include "Dot.h"
 #include "Vertex.h"
 
 class Edge;
@@ -12,31 +11,33 @@ class FiniteAuto
 public:
 
 	FiniteAuto();
-	~FiniteAuto();
+	virtual ~FiniteAuto();
 
 	Vertex* GetStart() const;
 
-	void AddVertex(const string& _name, const Status& _status = Status::Normal);
-	void RemoveVertex(const string& _name);
+	Vertex* AddVertex(const VertexStatus& _status = VertexStatus::Normal);
+	void RemoveVertex(Vertex* _veretex);
 
-	void AddEdge(const string& _sender, const string& _receiver, const string& _label);
-	void RemoveEdge(const string& _sender, const string& _receiver, const string& _label);
+	Edge* AddEdge(Vertex* _sender, Vertex* _receiver, const string& _label);
+	void RemoveEdge(Vertex* _sender, Vertex* _receiver, const string& _label);
+	void RemoveEdge(Edge* _edge);
 
 	const list<Vertex*>& GetVertexList() const;
-
 	const list<Vertex*>& GetFinalList() const;
 
-	void SetDrawer(const Dot& _drawer);
-	const Dot& GetDrawer() const;
+	//void SetDrawer(const Dot& _drawer);
+	//const Dot& GetDrawer() const;
 
-	void SaveImage(const string& dotExe, const string& dotFile, const string& pngFile);
+	//void SaveImage(const string& dotExe, const string& dotFile, const string& pngFile);
 
-private:
+protected:
 
 	list<Vertex*> vertexList;
 	Vertex* start;
 	list<Vertex*> finalList;
-	Dot drawer;
+	//Dot drawer;
+
+private:
 
 	FiniteAuto(const FiniteAuto& _auto);
 	void operator =(const FiniteAuto& _auto);

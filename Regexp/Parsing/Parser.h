@@ -50,8 +50,8 @@ public:
 	Scanner *scanner;
 	Errors  *errors;
 
-	Token *t;			// last recognized token
-	Token *la;			// lookahead token
+	Token *t;			// last recognized token (Coco/R notation)
+	Token *la;			// lookahead token (Coco/R notation)
 
 struct PToken
 	{

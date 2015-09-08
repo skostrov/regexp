@@ -10,7 +10,6 @@ FiniteAutoState::FiniteAutoState(Vertex* _vertex) : autoPos(_vertex)
 
 FiniteAutoState::FiniteAutoState(const FiniteAutoState& _state) : autoPos(_state.autoPos)
 {
-
 }
 
 FiniteAutoState::~FiniteAutoState()
@@ -40,7 +39,7 @@ bool FiniteAutoState::GoEdgesLabeledAs(const string& _label, list<FiniteAutoStat
 	{
 		result = true;
 
-		for (auto i = autoPos->GetOutEdges().begin(); i != autoPos->GetOutEdges().end(); ++i)
+		for (auto i = autoPos->COutEdgesBegin(); i != autoPos->COutEdgesEnd(); ++i)
 		{
 			if ((*i)->GetLabel() == _label)
 			{

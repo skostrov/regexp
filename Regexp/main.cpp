@@ -4,6 +4,7 @@
 #include "MultiStateSearcher.h"
 #include "RegularExpressionParser.h"
 #include "FiniteAuto.h"
+#include "GraphicFiniteAuto.h"
 #include "Vertex.h"
 #include "Edge.h"
 
@@ -13,8 +14,7 @@ void main()
 	wcin.imbue( locale( "rus_rus.866" ) );
 
 	RegularExpressionParser parser;
-	auto s = parser.Parse( "(a | b | c | 1 | 2 | 3) (a | b | c | 1 | 2 | 3)*" );
-	//auto s = parser.Parse( "(ab)*" );
+	auto s = parser.Parse( "(ab)*" );
 	if ( s )
 	{
 		WriteLine( "OK" );
@@ -38,19 +38,19 @@ void main()
 
 		MultiStateSearcher M(fa);
 
-		vector<string> tests = { "ab1231cccc32aaaaabbabbbbcccccccbbbbbaa123212122233333" };
+		vector<string> tests = { "abba" };
 
-		for (auto i : tests)
+		for ( const auto& i : tests )
 		{
 			bool test = M.TestMatching(i);
 
-			if (test)
+			if ( test )
 			{
-				cout << setw(50) << left << i << "+" << endl;
+				cout << setw(30) << left << i << "+" << endl;
 			}
 			else
 			{
-				cout << setw(50) << left << i << "-" << endl;
+				cout << setw(30) << left << i << "-" << endl;
 			}
 		}
 
@@ -60,37 +60,4 @@ void main()
 	{
 		WriteLine( "FAIL" );
 	}
-
-	/*FiniteAuto A;
-
-	A.AddVertex("start", Status::Start);
-	A.AddVertex("finish", Status::Final);
-	A.AddVertex("q1");
-
-	A.AddEdge("start", "q1", "a");
-	A.AddEdge("q1", "q1", "a");
-	A.AddEdge("q1", "finish", "");
-
-	A.SaveImage("C:/Program Files (x86)/Graphviz/bin/dot.exe", "./../tests/FiniteAuto.dot", "./../tests/FiniteAuto.png");
-
-	MultiStateSearcher M(&A);
-
-	vector<string> tests = { "abaaaa" };
-
-	for (auto i : tests)
-	{
-		bool test = M.TestMatching(i);
-
-		if (test)
-		{
-			cout << setw(20) << left << i << "+" << endl;
-		}
-		else
-		{
-			cout << setw(20) << left << i << "-" << endl;
-		}
-	}
-
-	_getch();*/
-
 }

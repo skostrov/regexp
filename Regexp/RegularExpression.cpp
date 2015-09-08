@@ -16,6 +16,8 @@ bool RegularExpression::IsMatch( string inputString )
 	{
 		Compile();
 	}
+
+	return false;
 }
 
 void RegularExpression::Compile()

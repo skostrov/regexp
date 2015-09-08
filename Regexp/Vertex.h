@@ -4,7 +4,7 @@
 
 class Edge;
 
-enum class Status
+enum class VertexStatus
 { 
 	Start,
 	Final,
@@ -15,12 +15,9 @@ class Vertex
 {
 public:
 
-	Vertex(const string& _name, const Status& _status = Status::Normal);
+	Vertex(const VertexStatus& _status = VertexStatus::Normal);
 	Vertex(const Vertex& _copy);
 	~Vertex();
-
-	const string& GetName() const;
-	void SetName(const string& _name);
 
 	void AddOutEdge(Edge* _edge);
 	void RemoveOutEdge(Edge* _edge);
@@ -28,19 +25,31 @@ public:
 	void AddInEdge(Edge* _edge);
 	void RemoveInEdge(Edge* _edge);
 
-	const list<Edge*>& GetOutEdges() const;
-	const list<Edge*>& GetInEdges() const;
+	const list<Edge*> GetInEdges() const;
+	const list<Edge*> GetOutEdges() const;
 
-	const Status& GetStatus() const;
-	void SetStatus(const Status& _status);
+	list<Edge*>::const_iterator CInEdgesBegin() const;
+	list <Edge*>::const_iterator CInEdgesEnd() const;
+
+	list <Edge*>::iterator InEdgesBegin();
+	list <Edge*>::iterator InEdgesEnd();
+	
+	list<Edge*>::const_iterator COutEdgesBegin() const;
+	list <Edge*>::const_iterator COutEdgesEnd() const;
+
+	list <Edge*>::iterator OutEdgesBegin();
+	list <Edge*>::iterator OutEdgesEnd();
+
+	const VertexStatus& GetStatus() const;
+	void SetStatus(const VertexStatus& _status);
 
 	bool operator ==(const Vertex& _vertex) const;
+	bool operator !=(const Vertex& _vertex) const;
 
 private:
 
-	string name;
 	list<Edge*> inEdges;
 	list<Edge*> outEdges;
-	Status status;
+	VertexStatus status;
 };
 

@@ -1,7 +1,7 @@
 #include "RegularExpressionParser.h"
 
 #include "Dot.h"
-#include "FiniteAuto.h"
+#include "GraphicFiniteAuto.h"
 
 namespace
 {
@@ -161,11 +161,12 @@ void ParseTreeToFAConverter::PlotFA()
 
 	AppednRuleToE( new E( s, f, tree.get() ) );
 
-	fa = new FiniteAuto();
+	fa = new GraphicFiniteAuto();
 
 	auto q = stack<V*>();
 	auto qm = unordered_map<V*,bool>();
 	auto em = unordered_map<E*,bool>();
+	auto tt = unordered_map<V*,Vertex*>();
 
 	q = stack<V*>();
 	qm.clear();
@@ -184,17 +185,18 @@ void ParseTreeToFAConverter::PlotFA()
 
 		// visit
 		
-		auto st = Status::Normal;
+		auto st = VertexStatus::Normal;
 		if ( item == s )
 		{
-			st = Status::Start;
+			st = VertexStatus::Start;
 		}
 		else if ( item == f )
 		{
-			st = Status::Final;
+			st = VertexStatus::Final;
 		}
 
-		fa->AddVertex( "V" + to_string( ( int )item ), st );
+		auto nv = fa->AddVertex( st );
+		tt[item] = nv; 
 
 		// childs
 	
@@ -220,8 +222,6 @@ void ParseTreeToFAConverter::PlotFA()
 		qm[item] = true;
 
 		// visit
-		
-		//fa->AddVertex( "V" + to_string( ( int )item ) );
 
 		// childs
 	
@@ -231,9 +231,7 @@ void ParseTreeToFAConverter::PlotFA()
 			{
 				em[it] = true;
 
-				fa->AddEdge( "V" + to_string( ( int )item ),
-					"V" + to_string( ( int )( it->Vf ) ),
-					it->C );
+				fa->AddEdge( tt[item], tt[it->Vf], it->C );
 			}
 			
 			q.push( it->Vf );
@@ -245,9 +243,7 @@ void ParseTreeToFAConverter::PlotFA()
 			{
 				em[it] = true;
 
-				fa->AddEdge( "V" + to_string( ( int )( it->Vs ) ),
-					"V" + to_string( ( int )item ),
-					it->C  );
+				fa->AddEdge( tt[it->Vs], tt[item], it->C );
 			}
 		}
 	}
@@ -310,8 +306,6 @@ void ParseTreeToFAConverter::AppednRuleToE( E* e )
 				auto enl = new E( fn, sn, nullptr );
 				auto es = new E( e->Vs, sn, nullptr );
 				auto ef = new E( fn, e->Vf, nullptr );
-
-				//RemoveE( e );
 
 				AppednRuleToE( en );
 			}
