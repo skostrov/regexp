@@ -24,12 +24,12 @@
 
 using namespace std;
 
-static inline void Write( string s )
+static inline void Write(string s)
 {
 	cout << s << endl;
 }
 
-static inline void WriteLine( string s )
+static inline void WriteLine(string s)
 {
 	cout << s << endl;
 }
@@ -37,6 +37,6 @@ static inline void WriteLine( string s )
 static inline string ReadLine()
 {
 	string result;
-	getline( std::cin, result );
+	getline(cin, result);
 	return result;
 }

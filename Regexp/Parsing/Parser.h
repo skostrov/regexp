@@ -21,7 +21,7 @@ public:
 	void Warning(const wchar_t *s);
 	void Exception(const wchar_t *s);
 
-}; // Errors
+};
 
 class Parser {
 private:
@@ -159,9 +159,9 @@ struct PToken
 
 	void Parse();
 
-}; // end Parser
+};
 
-} // namespace
+}
 
 
 #endif
